@@ -41,8 +41,20 @@ function Header(props) {
             >
               회원가입
             </HeaderLi>
-            <HeaderLi>주문내역</HeaderLi>
-            <HeaderLi>장바구니</HeaderLi>
+            <HeaderLi
+              onClick={() => {
+                history.push('/orderlist');
+              }}
+            >
+              주문내역
+            </HeaderLi>
+            <HeaderLi
+              onClick={() => {
+                history.push('/shoppingbag');
+              }}
+            >
+              장바구니
+            </HeaderLi>
             <HeaderLi>Q&A</HeaderLi>
           </HeaderTopUl>
         </FlexBox>
