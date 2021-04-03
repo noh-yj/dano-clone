@@ -12,10 +12,12 @@ function DanoInfo() {
           src='https://danoshop.net/mall/upload/resource/company/introduce.jpg'
           alt='danoinfo'
         />
-        <Img
-          src='https://danoshop.net/mall/upload/resource/company/banner.jpg'
-          alt='dano'
-        />
+        <div>
+          <Img
+            src='https://danoshop.net/mall/upload/resource/company/banner.jpg'
+            alt='dano'
+          />
+        </div>
       </Container>
       <Footer />
     </>
