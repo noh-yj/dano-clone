@@ -1,8 +1,60 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
+import { emailCheck, idCheck, phone_numCheck } from '../shared/common';
 
 function Signup(props) {
-  const { history } = props;
+  const dispatch = useDispatch();
+  const [user_id, SetUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
+  const [user_name, setUserName] = useState('');
+  const [user_email, setUserEmail] = useState('');
+  const [phone_num, setPhoneNum] = useState('');
+
+  const signup = () => {
+    if (
+      user_id === '' ||
+      password === '' ||
+      passwordCheck === '' ||
+      user_name === '' ||
+      user_email === '' ||
+      phone_num === ''
+    ) {
+      window.alert('회원 정보를 모두 입력하세요.');
+      return;
+    }
+    if (password !== passwordCheck) {
+      window.alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+      return;
+    }
+    if (
+      password.length < 4 ||
+      password.length > 16 ||
+      passwordCheck.length < 4 ||
+      passwordCheck.length > 16
+    ) {
+      window.alert('비밀번호는 형식이 맞지 않습니다.');
+      return;
+    }
+    if (!idCheck(user_id) || user_id.length < 4 || user_id.length > 16) {
+      window.alert('아이디 형식이 맞지 않습니다.');
+      return;
+    }
+    if (!emailCheck(user_email)) {
+      window.alert('이메일 형식이 맞지 않습니다.');
+      return;
+    }
+    if (!phone_numCheck(phone_num)) {
+      window.alert('핸드폰 형식이 맞지 않습니다.');
+      return;
+    }
+    dispatch(
+      userActions.SignupDB(user_id, password, user_name, user_email, phone_num),
+    );
+  };
+
   return (
     <Container>
       <Header>
@@ -24,7 +76,13 @@ function Signup(props) {
               <tr>
                 <th>아이디</th>
                 <td>
-                  <input type='text' placeholder='영문 4~16자' />
+                  <input
+                    type='text'
+                    placeholder='영문, 숫자 4~16자'
+                    onChange={(e) => {
+                      SetUserId(e.target.value);
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
@@ -33,13 +91,21 @@ function Signup(props) {
                   <input
                     type='password'
                     placeholder='영문, 숫자, 특수문자 4~16자 이내'
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                    }}
                   />
                 </td>
               </tr>
               <tr>
                 <th>비밀번호 확인</th>
                 <td>
-                  <input type='password' />
+                  <input
+                    type='password'
+                    onChange={(e) => {
+                      setPasswordCheck(e.target.value);
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
@@ -48,32 +114,40 @@ function Signup(props) {
                   <input
                     type='text'
                     placeholder='성과 이름을 모두 입력하세요.'
+                    onChange={(e) => {
+                      setUserName(e.target.value);
+                    }}
                   />
                 </td>
               </tr>
               <tr>
                 <th>이메일</th>
                 <td>
-                  <input type='text' placeholder='abc@email.com' />
+                  <input
+                    type='text'
+                    placeholder='abc@email.com'
+                    onChange={(e) => {
+                      setUserEmail(e.target.value);
+                    }}
+                  />
                 </td>
               </tr>
               <tr>
                 <th>휴대폰 번호</th>
                 <td>
-                  <input type='text' />
+                  <input
+                    type='text'
+                    onChange={(e) => {
+                      setPhoneNum(e.target.value);
+                    }}
+                  />
                 </td>
               </tr>
             </tbody>
           </table>
         </SignupBox>
         <div>
-          <SignupBtn
-            onClick={() => {
-              history.push('/');
-            }}
-          >
-            통합 회원가입
-          </SignupBtn>
+          <SignupBtn onClick={signup}>통합 회원가입</SignupBtn>
         </div>
       </MainContainer>
     </Container>

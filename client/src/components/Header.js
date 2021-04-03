@@ -29,14 +29,14 @@ function Header(props) {
           <HeaderTopUl>
             <HeaderLi
               onClick={() => {
-                history.push('/login');
+                history.push('/user/login');
               }}
             >
               로그인
             </HeaderLi>
             <HeaderLi
               onClick={() => {
-                history.push('/signup');
+                history.push('/user/signup');
               }}
             >
               회원가입
@@ -117,10 +117,10 @@ function Header(props) {
             <NavBox>
               <li>전체 보기</li>
               <li>다노샵 소개</li>
-              <li>인기 상품</li>
-              <li>신 상품</li>
+              <li>인기상품</li>
+              <li>신상품</li>
               <li>다노제품</li>
-              <li>알뜰 상품</li>
+              <li>알뜰상품</li>
               <li>무료 배송</li>
               <li
                 onMouseOver={() => {
@@ -251,7 +251,6 @@ const Info = styled.div`
   font-size: 13px;
   margin-top: 13px;
   text-align: right;
-  cursor: pointer;
   font-weight: normal;
 `;
 const InfoStrong = styled.strong`
@@ -263,7 +262,8 @@ const NavBar = styled.div`
   background-color: rgb(250, 248, 248);
   z-index: 100;
   height: 50px;
-  position: fixed;
+  position: sticky;
+  top: 0;
 `;
 const Nav = styled.div`
   padding: 0px;
