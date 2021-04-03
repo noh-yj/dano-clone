@@ -43,7 +43,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: '/api/signup',
+      url: '/user/signup',
       date: {
         user_id: user_id,
         password: password,

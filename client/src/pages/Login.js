@@ -66,7 +66,7 @@ function Login(props) {
           <LoginBtn onClick={login}>로그인</LoginBtn>
           <SignupBtn
             onClick={() => {
-              history.push('/signup');
+              history.push('/user/signup');
             }}
           >
             회원가입

@@ -16,8 +16,8 @@ function App() {
           <Header />
           <Main />
         </Route>
-        <Route path='/login' exact component={Login} />
-        <Route path='/signup' exact component={Signup} />
+        <Route path='/user/login' exact component={Login} />
+        <Route path='/user/signup' exact component={Signup} />
       </ConnectedRouter>
     </>
   );
