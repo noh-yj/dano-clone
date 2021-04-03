@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Item(props) {
+  const price = props.price;
+
   return (
     <>
       <ItemContainer>
         <ItemBody>
-          <Img
-            src='https://danoshop.net/mall/upload/2021/03/22/n6y6niunfvmv7mdy44e8.png'
-            alt='item-img'
-          />
+          <Img src={props.image_url} alt='item-img' />
 
           <CartContainer>
             <CartImg
@@ -19,10 +18,11 @@ function Item(props) {
           </CartContainer>
         </ItemBody>
         <ItemInfo>
-          <Title>다노X디디미니 밀키트 2종</Title>
+          <Title>{props.product_name}</Title>
           <PriceBox>
             <Price>
-              15,400<Won>원</Won>
+              {price.slice(0, -1)}
+              <Won>{price.slice(-1)}</Won>
             </Price>
           </PriceBox>
         </ItemInfo>
@@ -43,6 +43,9 @@ const ItemContainer = styled.div`
 const ItemBody = styled.div`
   height: 274px;
   width: 100%;
+  & Img:hover {
+    opacity: 0.5;
+  }
 `;
 const Img = styled.img`
   cursor: pointer;
@@ -64,6 +67,7 @@ const CartImg = styled.img`
 `;
 const ItemInfo = styled.div`
   margin: 0 5px;
+  cursor: default;
 `;
 const Title = styled.span`
   font-size: 14px;
