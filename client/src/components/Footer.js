@@ -3,7 +3,11 @@ import styled from "styled-components";
 
 const Footer = () => (
     <div className = "footer">
-        <Container>
+        
+            <Banner>
+                <img src="https://danoshop.net/mall/upload/resource/common/w-footer-img-brand-2020@2x.png"/>
+            </Banner>
+            <Container>
             <div>
                 <h3> 무엇을 도와드릴까요? </h3>
                 <text style={{color: "grey"}}>
@@ -62,8 +66,11 @@ const SecondContainer = styled.div`
 `;
 
 
-// const SecondBlock = styled.div`
-//     display: flex;
-// `;
+const Banner = styled.div`
+    & img {
+       width:100%;
+    };
+`;
+
 
 export default Footer;

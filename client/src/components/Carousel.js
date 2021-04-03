@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from 'styled-components';
 import {
   Carousel,
   CarouselItem,
@@ -52,8 +53,12 @@ const  TopCarousel = (props) => {
         key={item.id}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
+        image="image"
       >
-        <img src={item.src}/>
+        <Div>
+          <Img className="image" src={item.src}/>
+        </Div>
+          
         <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
         
       </CarouselItem>
@@ -62,15 +67,21 @@ const  TopCarousel = (props) => {
 
   return (
     <div>
-      <style>
+      {/* <style>
         {
           `.custom-tag {
               max-width: 100%;
               height: 400px;
               background: black;
+            }`,
+
+            `.image {
+              height: 100%;
+              max-width: 100%;
             }`
         }
-      </style>
+      </style> */}
+
       <Carousel
         activeIndex={activeIndex}
         next={next}
@@ -84,5 +95,13 @@ const  TopCarousel = (props) => {
     </div>
   );
 }
+
+const Img = styled.img`
+max-width: 1250px;
+width: 100%;
+display: block;
+border: none;
+margin: auto;
+`;
 
 export default TopCarousel;

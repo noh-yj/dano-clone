@@ -23,16 +23,11 @@ function App() {
           <TopCarousel />
           <Footer />
         </Route>
-<<<<<<< HEAD
         <Route path='/login' exact component={Login} />
         <Route path='/signup' exact component={Signup} />
         <Route path='/shoppingbag' exact component={ShoppingBag} />
         <Route path='/orderlist' exact component={OrderList} />
         <Route path='/nonuserorderlist' exact component={NonUserOrderList} />
-=======
-        <Route path='/user/login' exact component={Login} />
-        <Route path='/user/signup' exact component={Signup} />
->>>>>>> 8268f5ed21577dff9eba61d3b366ab28a5b2d2ef
       </ConnectedRouter>
     </>
   );
