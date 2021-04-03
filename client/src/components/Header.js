@@ -239,7 +239,6 @@ const Info = styled.div`
   font-size: 13px;
   margin-top: 13px;
   text-align: right;
-  cursor: pointer;
   font-weight: normal;
 `;
 const InfoStrong = styled.strong`
@@ -251,7 +250,8 @@ const NavBar = styled.div`
   background-color: rgb(250, 248, 248);
   z-index: 100;
   height: 50px;
-  position: fixed;
+  position: sticky;
+  top: 0;
 `;
 const Nav = styled.div`
   padding: 0px;

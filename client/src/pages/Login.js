@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 import styled from 'styled-components';
 
 function Login(props) {
   const { history } = props;
+  const dispatch = useDispatch();
+  const [user_id, SetUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const login = () => {
+    if (user_id === '' || password === '') {
+      window.alert('로그인 정보를 모두 입력해주세요.');
+      return;
+    }
+    dispatch(userActions.LoginDB(user_id, password));
+  };
   return (
     <Container>
       <Header>
@@ -20,10 +32,22 @@ function Login(props) {
         </LoginTitleBox>
 
         <InputBox>
-          <Input type='text' placeholder='아이디' />
+          <Input
+            type='text'
+            placeholder='아이디'
+            onChange={(e) => {
+              SetUserId(e.target.value);
+            }}
+          />
         </InputBox>
         <InputBox>
-          <Input type='text' placeholder='비밀번호' />
+          <Input
+            type='password'
+            placeholder='비밀번호'
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
         </InputBox>
         <FindId>
           <span
@@ -39,7 +63,7 @@ function Login(props) {
           </span>
         </FindId>
         <div>
-          <LoginBtn>로그인</LoginBtn>
+          <LoginBtn onClick={login}>로그인</LoginBtn>
           <SignupBtn
             onClick={() => {
               history.push('/signup');
