@@ -55,9 +55,9 @@ const  TopCarousel = (props) => {
         onExited={() => setAnimating(false)}
         image="image"
       >
-        <Div>
+        <div>
           <Img className="image" src={item.src}/>
-        </Div>
+        </div>
           
         <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
         
