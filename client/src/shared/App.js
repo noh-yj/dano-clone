@@ -16,6 +16,7 @@ import Danoproducts from '../pages/Danoproducts';
 import Newproducts from '../pages/Newproducts';
 import Cheapproducts from '../pages/Cheapproducts';
 import Freeproducts from '../pages/Freeproducts';
+import Prepare from '../pages/Prepare';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
         <Route path='/products/danoproducts' exact component={Danoproducts} />
         <Route path='/products/cheapproducts' exact component={Cheapproducts} />
         <Route path='/products/freeproducts' exact component={Freeproducts} />
+        <Route path='/prepare' exact component={Prepare} />
       </ConnectedRouter>
     </>
   );

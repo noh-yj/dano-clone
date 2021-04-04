@@ -55,7 +55,13 @@ function Header(props) {
             >
               장바구니
             </HeaderLi>
-            <HeaderLi>Q&A</HeaderLi>
+            <HeaderLi
+              onClick={() => {
+                history.push('/prepare');
+              }}
+            >
+              Q&A
+            </HeaderLi>
           </HeaderTopUl>
         </FlexBox>
 
@@ -171,6 +177,9 @@ function Header(props) {
                 onMouseOut={() => {
                   setMenu(false);
                 }}
+                onClick={() => {
+                  history.push('/prepare');
+                }}
               >
                 상품유형별
                 <HoverMenu style={menustyle}>
@@ -185,7 +194,13 @@ function Header(props) {
                   </ul>
                 </HoverMenu>
               </li>
-              <li>공지사항</li>
+              <li
+                onClick={() => {
+                  history.push('/prepare');
+                }}
+              >
+                공지사항
+              </li>
             </NavBox>
           </Nav>
         </Container>

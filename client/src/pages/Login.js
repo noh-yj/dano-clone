@@ -50,11 +50,7 @@ function Login(props) {
           />
         </InputBox>
         <FindId>
-          <span
-            onClick={() => {
-              history.push('/');
-            }}
-          >
+          <span>
             아이디/비밀번호 찾기{' '}
             <img
               src='https://auth.dano.me/res/images/ec1e39bf2b6a3857a9e6bd2c3364a67f.png'
@@ -75,7 +71,11 @@ function Login(props) {
         <SnsBox>
           <SnsText>SNS로 시작하기</SnsText>
           <SnsBtnBox>
-            <KakaoBtn>
+            <KakaoBtn
+              onClick={() => {
+                history.push('/prepare');
+              }}
+            >
               <img
                 src='https://auth.dano.me/res/images/49c343639ceea64b1fe7f46e2d6442ef.svg'
                 alt='카톡'
@@ -83,7 +83,11 @@ function Login(props) {
               카카오톡
             </KakaoBtn>
 
-            <AppleBtn>
+            <AppleBtn
+              onClick={() => {
+                history.push('/prepare');
+              }}
+            >
               <img
                 src='https://auth.dano.me/res/images/0a578dbded0dfd9ed03290e39f9b1b22.svg'
                 alt='애플'
