@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import { setCookie, deleteCookie } from '../../shared/Cookie';
 import axios from 'axios';
+import { config } from '../../config';
 
 const SET_USER = 'SET_USER';
 const LOG_OUT = 'LOG_OUT';
@@ -18,7 +19,7 @@ const LoginDB = (user_id, password) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: '/api/login',
+      url: `${config.api}/api/login`,
       data: {
         user_id: user_id,
         password: password,
@@ -43,13 +44,13 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: '/user/signup',
+      url: `${config.api}/api/signup`,
       date: {
-        user_id: user_id,
+        username: user_id,
         password: password,
-        user_name: user_name,
-        user_email: user_email,
-        phone_num: phone_num,
+        name: user_name,
+        email: user_email,
+        phone: phone_num,
       },
     })
       .then((res) => {
@@ -62,7 +63,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
             phone_num: phone_num,
           }),
         );
-        history.push('/');
+        history.push('/user/login');
       })
       .catch((e) => {
         console.log('에러 발생:', e);

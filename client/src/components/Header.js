@@ -115,13 +115,55 @@ function Header(props) {
         <Container>
           <Nav>
             <NavBox>
-              <li>전체 보기</li>
-              <li>다노샵 소개</li>
-              <li>인기상품</li>
-              <li>신상품</li>
-              <li>다노제품</li>
-              <li>알뜰상품</li>
-              <li>무료 배송</li>
+              <li
+                onClick={() => {
+                  history.push('/products/allproducts');
+                }}
+              >
+                전체 보기
+              </li>
+              <li
+                onClick={() => {
+                  history.push('/danoinfo');
+                }}
+              >
+                다노샵 소개
+              </li>
+              <li
+                onClick={() => {
+                  history.push('/products/popularproducts');
+                }}
+              >
+                인기상품
+              </li>
+              <li
+                onClick={() => {
+                  history.push('/products/newproducts');
+                }}
+              >
+                신상품
+              </li>
+              <li
+                onClick={() => {
+                  history.push('/products/danoproducts');
+                }}
+              >
+                다노제품
+              </li>
+              <li
+                onClick={() => {
+                  history.push('/products/cheapproducts');
+                }}
+              >
+                알뜰상품
+              </li>
+              <li
+                onClick={() => {
+                  history.push('/products/freeproducts');
+                }}
+              >
+                무료 배송
+              </li>
               <li
                 onMouseOver={() => {
                   setMenu(true);
@@ -178,6 +220,10 @@ const Atag = styled.a`
   cursor: pointer;
   line-height: 40px;
   text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: #a1a1a1;
+  }
 `;
 const HeaderTopUl = styled.ul`
   display: flex;
@@ -252,6 +298,7 @@ const Info = styled.div`
   margin-top: 13px;
   text-align: right;
   font-weight: normal;
+  cursor: default;
 `;
 const InfoStrong = styled.strong`
   color: rgb(255, 111, 97);
