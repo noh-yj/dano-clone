@@ -105,6 +105,13 @@ const Footer = () => (
   </div>
 );
 
+const Container = styled.div`
+  display: flex;
+  margin: 30px;
+  max-width: 100%;
+  max-height: 100%;
+`;
+
 const FirstBlock = styled.div`
   margin: 0px 40px;
 `;
@@ -164,11 +171,11 @@ const Img = styled.div`
   margin: 0;
   padding: 0;
 `;
-const Container = styled.div`
-  display: flex;
-  margin: 30px;
-  width: 100%;
-`;
+// const Container = styled.div`
+//   display: flex;
+//   margin: 30px;
+//   width: 100%;
+// `;
 
 const Bottom = styled.div`
   display: felx;
