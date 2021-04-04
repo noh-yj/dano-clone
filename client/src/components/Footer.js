@@ -54,7 +54,7 @@ const Footer = () => (
                 <div>
                     <div>
                         <Atag href="https://www.youtube.com/channel/UCxM_KJ601hwrOpjVC07iMVQ" target="_blank">
-                            <img><Img alt="유튜브 다노TV" src="https://danoshop.net/mall/upload/resource/common/footer-icon-youtube.png"/></img>
+                            <Img alt="유튜브 다노TV" src="https://danoshop.net/mall/upload/resource/common/footer-icon-youtube.png"/>
                         </Atag>
                         <Atag href="http://instagram.com/danoshop_" target="_blank">
                             <Img alt="인스타그램 다노샵" src="https://danoshop.net/mall/upload/resource/common/footer-icon-instagram.png"/>
@@ -82,6 +82,13 @@ const Footer = () => (
         </Bottom>
     </div>
 )
+
+const Container = styled.div`
+    display: flex;
+    margin: 30px; 
+    max-width: 100%;
+    max-height: 100%;
+`;
 
 const FirstBlock = styled.div`
     margin: 0px 40px;
@@ -143,14 +150,9 @@ const Img = styled.div`
     padding: 0;
     
 `;
-const Container = styled.div`
-    display: flex;
-    margin: 30px; 
-    width: 100%;
-`;
 
 const Bottom = styled.div`
-    display: felx;
+    display: flex;
     background-color: #F3F3F3; 
     font-size: 12px;
     padding: 30px;    

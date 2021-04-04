@@ -8,40 +8,43 @@ const OrderList = (props) => {
     return (
         <React.Fragment>
             <Header/>
-            <Title>
-                주문목록/배송조회
-                <CurrentPage>
-                    01 마이페이지 
-                    <RightArrow></RightArrow>
-                    <Strong>02 주문목록/배송조회</Strong>
-                </CurrentPage>
-            </Title>
-            <Subtitle>
-                주문상품 정보
-            </Subtitle>
-            <table>
-                <Table>
-                    <Thead>
-                            <th>날짜 및 주문번호</th>
-                            <th>주문정보</th>
-                            <th>수량</th>
-                            <th>총 상품 금액</th>
-                            <th>배송비</th>
-                            <th>총 주문금액</th>
-                            <th>주문처리상태</th>
-                    </Thead>
-                        <Tbody>
-                        <th>
-                            구매한 내역이 없습니다 :)
-                        </th>
-                    </Tbody>
-                </Table>
-            </table>
-            
+                <Title>
+                    주문목록/배송조회
+                    <CurrentPage>
+                        01 마이페이지 
+                        <RightArrow></RightArrow>
+                        <Strong>02 주문목록/배송조회</Strong>
+                    </CurrentPage>
+                </Title>
+                <Subtitle>
+                    주문상품 정보
+                </Subtitle>
+                <table>
+                    <Table>
+                        <Thead>
+                                <th>날짜 및 주문번호</th>
+                                <th>주문정보</th>
+                                <th>수량</th>
+                                <th>총 상품 금액</th>
+                                <th>배송비</th>
+                                <th>총 주문금액</th>
+                                <th>주문처리상태</th>
+                        </Thead>
+                            <Tbody>
+                            <th>
+                                구매한 내역이 없습니다 :)
+                            </th>
+                        </Tbody>
+                    </Table>
+                </table>
                 
             <Footer/>
         </React.Fragment>
     )};
+
+const Container = styled.div`
+    display: flex;
+`;
 
 const Title = styled.div`
     font-size: 24px;
@@ -59,13 +62,13 @@ const Table = styled.div`
     // display: table-column-group;
     width: 100%;
     margin-bottom: 100px;
-    float: center;
-`;
+    display: flex;
+    `;
 
 const Thead = styled.div`
     // display: table-row;
     // vertical-align: inherit;
-    text-align: center;
+    display: fixed;
     margin: 0 auto;
     font-weight: normal;
     font-size: 14px;

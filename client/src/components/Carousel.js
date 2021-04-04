@@ -50,16 +50,16 @@ const  TopCarousel = (props) => {
       <CarouselItem
         className="custom-tag"
         tag="div"
-        key={item.id}
+        key={item.src}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         image="image"
       >
-        <div>
-          <Img className="image" src={item.src}/>
-        </div>
+        {/* <div className="image"> */}
+          <img style={{margin:"0", width:"100%", height:"300px"}} src={item.src}/>
+        {/* </div> */}
           
-        <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
+        {/* <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} /> */}
         
       </CarouselItem>
     );
@@ -67,41 +67,59 @@ const  TopCarousel = (props) => {
 
   return (
     <div>
-      {/* <style>
+      <style>
         {
           `.custom-tag {
               max-width: 100%;
-              height: 400px;
               background: black;
+              display: flex;
+            }`
+        }
+        {/* {
+          `.custom-tag {
+              max-width: 100%;
+              width: 1250px;
+              background: black;
+              display: flex;
             }`,
 
             `.image {
-              height: 100%;
-              max-width: 100%;
+                height: 100%;
+                width: 100%;
+                display: flex;
+                margin: auto;
             }`
-        }
-      </style> */}
-
-      <Carousel
-        activeIndex={activeIndex}
-        next={next}
-        previous={previous}
-      >
-        <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-        {slides}
-        <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-        <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-      </Carousel>
-    </div>
+        } */}
+      </style>
+        <Carousel
+              activeIndex={activeIndex}
+              next={next}
+              previous={previous}
+            >
+              <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+              {slides}
+              <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+              <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+          </Carousel>
+      
+</div>
   );
 }
 
-const Img = styled.img`
-max-width: 1250px;
-width: 100%;
-display: block;
-border: none;
-margin: auto;
-`;
+// const Img = styled.img`
+//   width: 1250px;
+//   height: 1250px;
+//   width: 100%;
+//   height: 100%;
+//   display: block;
+//   border: none;
+//   margin: auto;
+//   `;
+
+// const Main = styled.img`
+//     max-width: 100%;
+
+// `;
+
 
 export default TopCarousel;
