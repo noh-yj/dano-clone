@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const OrderList = (props) => {
+    const { history } = props;
+    
     return (
         <React.Fragment>
             <Header/>
@@ -20,36 +22,41 @@ const OrderList = (props) => {
                 <Subtitle>
                     주문상품 정보
                 </Subtitle>
-                <table>
-                    <Table>
-                        <Thead>
-                                <th className='th1'>날짜 및 주문번호</th>
-                                <th>주문정보</th>
-                                <th>수량</th>
-                                <th>총 상품 금액</th>
-                                <th>배송비</th>
-                                <th>총 주문금액</th>
-                                <th>주문처리상태</th>
-                        </Thead>
-                            <Tbody>
-                            <th>
-                                구매한 내역이 없습니다 :)
-                            </th>
-                        </Tbody>
-                    </Table>
-                </table>
+                <ListContainer>
+                    <Thead>
+                        <tr>
+                            <td>날짜 및 주문번호</td>
+                            <td>주문정보</td>
+                            <td>수량</td>
+                            <td>총 상품 금액</td>
+                            <td>배송비</td>
+                            <td>총 주문금액</td>
+                            <td>주문처리상태</td>
+                        </tr>
+                    </Thead>
+                    <Tbody>
+                        <tr>
+                            구매한 내역이 없습니다 :)
+                        </tr>
+                    </Tbody>
+                </ListContainer>
             </Container>   
             <Footer/>
         </React.Fragment>
     )};
 
 const Container = styled.div`
-    // display: flex;
+    display: table;
+    margin: auto;
     // text-align: center;
     // padding: 30px;
     // width: 100%;
 `;
-
+const ListContainer = styled.div`
+    display: table;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+`;
 const Title = styled.div`
     font-size: 24px;
     font-weight: bold;
@@ -60,26 +67,19 @@ const Subtitle = styled.div`
     font-size: 14px;
     margin: 20px 0px;
 `;
-const Table = styled.div`
-    border-top: 2px solid #000;
-    border-bottom: 1px solid #797979;
-    // display: table-column-group;
-    width: 100%;
-    margin-bottom: 100px;
-    display: flex;
-    `;
 
 const Thead = styled.div`
-    // vertical-align: inherit;
-    display: fixed;
-    margin: 0 auto;
+    border-top: 2px solid rgb(51, 51, 51);
+    display: table;
     font-weight: normal;
     font-size: 14px;
-    letter-spacing: -0.3px;
-    margin: 30px 0px;
-    display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
+    width: 1140px;
+    max-width: 100%;
+    text-align: center;
+    font-weight: bold;
+    // letter-spacing: -0.3px;
+    // vertical-align: middle;
+    // border-color: inherit;
     `;
 
 const Tbody = styled.div`
@@ -88,6 +88,10 @@ const Tbody = styled.div`
     font-size: 12px;
     letter-spacing: -0.3px;
     text-indent: initial;
+    display: table;
+    border-bottom: 1px solid rgb(51, 51, 51);
+    width: 1140px;
+    max-width: 100%;
 `;
 const CurrentPage = styled.div`
     float: right;

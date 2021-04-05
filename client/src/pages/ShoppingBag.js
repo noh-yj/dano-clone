@@ -35,6 +35,7 @@ const ShoppingBag = (props) => {
 
 
     const Container = styled.div`
+        display: table;
         text-align: center;
         padding: 30px;
         width: 100%;

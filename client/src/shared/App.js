@@ -19,6 +19,7 @@ import Freeproducts from '../pages/Freeproducts';
 import Prepare from '../pages/Prepare';
 import Mypage from '../pages/Mypage';
 import Userinfo from '../pages/Userinfo';
+import Cart from '../pages/Cart';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path='/prepare' exact component={Prepare} />
         <Route path='/mypage' exact component={Mypage} />
         <Route path='/user/mypage' exact component={Userinfo} />
+        <Route path='/cart' exact component={Cart} />
       </ConnectedRouter>
     </>
   );
