@@ -110,9 +110,7 @@ const Thead = styled.div`
     // border-collapse: separate;
     // border-spacing: 0 10px;
     width: 700px;
-    display: table;
-
-    
+    display: table;   
 `;
 const PriceContainer = styled.div`
     border-top: 2px solid rgb(51, 51, 51);
@@ -151,6 +149,7 @@ const Tbody = styled.div`
 `;
 const Btn = styled.div`
     display: flex;
+    
 
 `;
 const ShoppingBtn = styled.div`

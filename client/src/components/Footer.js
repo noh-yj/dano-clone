@@ -205,7 +205,6 @@ const Img = styled.div`
 //   width: 100%;
 // `;
 
-
 const Bottom = styled.div`
 //   width: 1140px;
   display: flex;
