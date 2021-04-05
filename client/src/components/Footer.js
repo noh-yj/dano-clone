@@ -1,126 +1,113 @@
-import React from "react";
-import styled from "styled-components";
-
+import React from 'react';
+import styled from 'styled-components';
 
 const Footer = () => {
-    return(
+  return (
     <Container>
-            <Banner>
-                <img
-                alt="수상배너"
-                src="https://danoshop.net/mall/upload/resource/common/w-footer-img-brand-2020@2x.png"
-                />
-            </Banner>
-            <MainFooter>
-                    <ContactBlock>
-                        <Title> 무엇을 도와드릴까요 </Title>
-                        <ContactTime>
-                            평일 10:00 ~ 18:00 (주말 및 공휴일 휴무) <br />
-                            점심시간 12:30 ~ 13:30{" "}
-                        </ContactTime>
-                    </ContactBlock>
-                    <div>
-                    <FirstBlock>
-                        <Title> 다노샵 </Title>
-                        <Contents>
-                        채팅 상담하기 <br />
-                        <hr style={{ width: 200 }} />
-                        문의 글 남기기 <br />
-                        <hr style={{ width: 200 }} />
-                        전화 문의하기 (02-2135-1885)
-                        </Contents>
-                    </FirstBlock>
-                    </div>
-                    <SecondBlock>
-                        <Title> 마이다노 </Title>
-                        <Contents>
-                            {" "}
-                            채팅 상담하기 <br />
-                            <hr style={{ width: 200 }} />
-                            문의 글 남기기{" "}
-                        </Contents>
-                    </SecondBlock>
-                    <ThirdBlock>
-                        <Title> 제휴 / 입점문의 </Title>
-                        <div>
-                            <Box href="https://forms.gle/yCTC138E3sQ68CoV8" target="_blank">
-                            다노샵 입점 신청하기
-                            </Box>
-                            <Email>
-                            입점 제안 문의 &nbsp;
-                            <Atag href="mailto:support@danoshop.net">
-                                support@danoshop.net
-                            </Atag>
-                            </Email>
-                            <Email>
-                            마케팅 제휴 문의 &nbsp;
-                            <Atag href="mailto:dano.mkt@gmail.com">dano.mkt@gmail.com</Atag>
-                            </Email>
-                        </div>
-                        <div>
-                            <Img>
-                                <img
-                                alt="유튜브 다노TV"
-                                src="https://danoshop.net/mall/upload/resource/common/footer-icon-youtube.png">
-                                </img>&nbsp;&nbsp;&nbsp;
-                                <img
-                                alt="인스타그램 다노샵"
-                                src="https://danoshop.net/mall/upload/resource/common/footer-icon-instagram.png">
-                                </img>&nbsp;&nbsp;&nbsp;
-                                <img
-                                alt="다노 블로그"
-                                src="https://danoshop.net/mall/upload/resource/common/footer-icon-blog.png">
-                                </img>&nbsp;&nbsp;&nbsp;
-                                <img
-                                alt="페이스북 다노"
-                                src="https://danoshop.net/mall/upload/resource/common/footer-icon-facebook.png">
-                                </img>
-                            </Img>
-                        </div>  
-                    </ThirdBlock>
-            </MainFooter>
+      <Banner>
+        <img
+          alt='수상배너'
+          src='https://danoshop.net/mall/upload/resource/common/w-footer-img-brand-2020@2x.png'
+        />
+      </Banner>
+      <MainFooter>
+        <ContactBlock>
+          <Title> 무엇을 도와드릴까요 </Title>
+          <ContactTime>
+            평일 10:00 ~ 18:00 (주말 및 공휴일 휴무) <br />
+            점심시간 12:30 ~ 13:30{' '}
+          </ContactTime>
+        </ContactBlock>
+        <div>
+          <FirstBlock>
+            <Title> 다노샵 </Title>
+            <Contents>
+              채팅 상담하기 <br />
+              <hr style={{ width: 200 }} />
+              문의 글 남기기 <br />
+              <hr style={{ width: 200 }} />
+              전화 문의하기 (02-2135-1885)
+            </Contents>
+          </FirstBlock>
+        </div>
+        <SecondBlock>
+          <Title> 마이다노 </Title>
+          <Contents>
+            {' '}
+            채팅 상담하기 <br />
+            <hr style={{ width: 200 }} />
+            문의 글 남기기{' '}
+          </Contents>
+        </SecondBlock>
+        <ThirdBlock>
+          <Title> 제휴 / 입점문의 </Title>
+          <div>
+            <Box href='https://forms.gle/yCTC138E3sQ68CoV8' target='_blank'>
+              다노샵 입점 신청하기
+            </Box>
+            <Email>
+              입점 제안 문의 &nbsp;
+              <Atag href='mailto:support@danoshop.net'>
+                support@danoshop.net
+              </Atag>
+            </Email>
+            <Email>
+              마케팅 제휴 문의 &nbsp;
+              <Atag href='mailto:dano.mkt@gmail.com'>dano.mkt@gmail.com</Atag>
+            </Email>
+          </div>
+          <div>
+            <Img>
+              <img
+                alt='유튜브 다노TV'
+                src='https://danoshop.net/mall/upload/resource/common/footer-icon-youtube.png'
+              ></img>
+              &nbsp;&nbsp;&nbsp;
+              <img
+                alt='인스타그램 다노샵'
+                src='https://danoshop.net/mall/upload/resource/common/footer-icon-instagram.png'
+              ></img>
+              &nbsp;&nbsp;&nbsp;
+              <img
+                alt='다노 블로그'
+                src='https://danoshop.net/mall/upload/resource/common/footer-icon-blog.png'
+              ></img>
+              &nbsp;&nbsp;&nbsp;
+              <img
+                alt='페이스북 다노'
+                src='https://danoshop.net/mall/upload/resource/common/footer-icon-facebook.png'
+              ></img>
+            </Img>
+          </div>
+        </ThirdBlock>
+      </MainFooter>
 
-            <Bottom>
-                <Text>
-                다노샵 소개 | 통합 약관 | 이용 약관 | <span>개인정보처리방침</span>
-                <br />
-                <br />
-                대표:정범윤 | 주소:서울시 마포구 토정로 271 (주)다노 |
-                사업자등록번호:106-87-00202 사업자 정보 확인
-                <br />
-                개인정보보호책임자:이지수 | 통신판매업 신고번호:제2017-마포-0722 |
-                건강기능식품판매업 신고번호:제 2018-0069040호
-                <br />
-                Copyright © DANO, Inc. All Rights Reserved.
-                <br />
-                </Text>
-                {/* <App>
-                    <img 
-                    alt="apple"
-                    src="https://danoshop.net/mall/upload/resource/common/footer-icon-appstore.png"/>
-                    App Store |&nbsp;&nbsp;&nbsp;
-                    <img
-                    alt="google"
-                    src="https://danoshop.net/mall/upload/resource/common/footer-icon-google-play.png"/>
-                    Google Play
-                </App> */}
-            </Bottom>
-  </Container>
-);}
-
+      <Bottom>
+        <Text>
+          다노샵 소개 | 통합 약관 | 이용 약관 | <span>개인정보처리방침</span>
+          <br />
+          <br />
+          대표:정범윤 | 주소:서울시 마포구 토정로 271 (주)다노 |
+          사업자등록번호:106-87-00202 사업자 정보 확인
+          <br />
+          개인정보보호책임자:이지수 | 통신판매업 신고번호:제2017-마포-0722 |
+          건강기능식품판매업 신고번호:제 2018-0069040호
+          <br />
+          Copyright © DANO, Inc. All Rights Reserved.
+          <br />
+        </Text>
+      </Bottom>
+    </Container>
+  );
+};
 
 const Container = styled.div`
-//   max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  item-align: center;
-
+  width: 100%;
 `;
 
 const MainFooter = styled.div`
-//   width: 1140px;
-//   max-width: 100%;
-  margin: 30px;
+  width: 1140px;
+  margin: 30px auto;
   display: flex;
   justify-content: space-between;
 `;
@@ -170,10 +157,10 @@ const Email = styled.div`
   height: 100%;
   font-size: 12px;
   line-height: 30px;
-  setence-spacing: 20px;
   @media screen and (max-width: 1024px) {
-        display: block;
-        line-height: 18px;
+    display: block;
+    line-height: 18px;
+  }
 `;
 const Atag = styled.div`
   color: #a1a1a1;
@@ -196,18 +183,14 @@ const Img = styled.div`
   vertical-align: middle;
   cursor: pointer;
   @media screen and (max-width: 1024px) {
-        padding-right: 200px;
-        padding-top: 10px;
+    padding-right: 200px;
+    padding-top: 10px;
+  }
 `;
-// const Container = styled.div`
-//   display: flex;
-//   margin: 30px;
-//   width: 100%;
-// `;
 
 const Bottom = styled.div`
-//   width: 1140px;
   display: flex;
+  width: 100%;
   background-color: #f3f3f3;
   font-size: 12px;
   padding: 30px;
@@ -217,19 +200,14 @@ const Bottom = styled.div`
 `;
 
 const Text = styled.div`
+  width: 1140px;
+  margin: 0 auto;
 `;
-
-//     margin-left: 12px;
-//     display: flex;
-//     -webkit-box-align: center;
-//     align-items: center;
-// `;
 
 const Banner = styled.div`
   & img {
     width: 100%;
   }
-//   width: 1140px;
 `;
 
 export default Footer;
