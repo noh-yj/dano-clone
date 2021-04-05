@@ -178,6 +178,7 @@ export default handleActions(
       }),
     [DELETE_USER]: (state, action) =>
       produce(state, (draft) => {
+        deleteCookie('is_login');
         draft.user = null;
         draft.is_login = false;
       }),
