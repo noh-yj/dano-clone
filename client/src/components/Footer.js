@@ -112,7 +112,7 @@ const Footer = () => {
 const Container = styled.div`
 //   max-width: 100%;
   max-height: 100%;
-  margin: auto;
+  margin: 0 auto;
   item-align: center;
 
 `;

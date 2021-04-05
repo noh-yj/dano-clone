@@ -9,8 +9,9 @@ const ShoppingBag = (props) => {
     return (
         // <React.Fragment>
         <React.Fragment>
+            <Header/>
             <Container>
-                <Header/>
+                <CartContainer>
                     <Title>
                         장바구니
                         <CurrentPage>
@@ -27,6 +28,7 @@ const ShoppingBag = (props) => {
                     <Btn>
                         추천상품 보러가기
                     </Btn>
+                </CartContainer>
             </Container>
             <Footer/>
         </React.Fragment>
@@ -35,11 +37,16 @@ const ShoppingBag = (props) => {
 
 
     const Container = styled.div`
-        display: table;
         text-align: center;
         padding: 30px;
-        width: 100%;
-        // width: 1140px;
+        // width: 100%;
+        margin: auto;
+        width: 1140px;
+    `;
+
+    const CartContainer = styled.div`
+        
+        // align-items: center;
     `;
     const Title = styled.div`
         line-height: 24px;
