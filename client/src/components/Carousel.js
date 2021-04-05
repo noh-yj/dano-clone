@@ -53,13 +53,13 @@ const  TopCarousel = (props) => {
         key={item.src}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        image="image"
+        // image="image"
       >
         {/* <div className="image"> */}
-          <img style={{margin:"0", width:"100%", height:"300px"}} src={item.src}/>
+          <img style={{margin:"0", display:"flex", width:"100%", height:"300px"}} src={item.src}/>
         {/* </div> */}
           
-        {/* <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} /> */}
+        <CarouselCaption className="text-danger" captionText={item.caption} captionHeader={item.caption} />
         
       </CarouselItem>
     );
@@ -70,10 +70,15 @@ const  TopCarousel = (props) => {
       <style>
         {
           `.custom-tag {
+              // width: 1140px;
               max-width: 100%;
               background: black;
               display: flex;
             }`
+            // `.TopCarousel {
+            //     width: 100%;
+
+            // }`
         }
         {/* {
           `.custom-tag {
@@ -105,6 +110,7 @@ const  TopCarousel = (props) => {
 </div>
   );
 }
+
 
 // const Img = styled.img`
 //   width: 1250px;

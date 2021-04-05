@@ -37,6 +37,8 @@ const ShoppingBag = (props) => {
     const Container = styled.div`
         text-align: center;
         padding: 30px;
+        width: 100%;
+        // width: 1140px;
     `;
     const Title = styled.div`
         line-height: 24px;

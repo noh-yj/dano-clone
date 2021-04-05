@@ -8,6 +8,7 @@ const OrderList = (props) => {
     return (
         <React.Fragment>
             <Header/>
+            <Container>
                 <Title>
                     주문목록/배송조회
                     <CurrentPage>
@@ -22,7 +23,7 @@ const OrderList = (props) => {
                 <table>
                     <Table>
                         <Thead>
-                                <th>날짜 및 주문번호</th>
+                                <th className='th1'>날짜 및 주문번호</th>
                                 <th>주문정보</th>
                                 <th>수량</th>
                                 <th>총 상품 금액</th>
@@ -37,13 +38,16 @@ const OrderList = (props) => {
                         </Tbody>
                     </Table>
                 </table>
-                
+            </Container>   
             <Footer/>
         </React.Fragment>
     )};
 
 const Container = styled.div`
-    display: flex;
+    // display: flex;
+    // text-align: center;
+    // padding: 30px;
+    // width: 100%;
 `;
 
 const Title = styled.div`
@@ -66,7 +70,6 @@ const Table = styled.div`
     `;
 
 const Thead = styled.div`
-    // display: table-row;
     // vertical-align: inherit;
     display: fixed;
     margin: 0 auto;
