@@ -128,16 +128,16 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
       },
     })
       .then((res) => {
-        // console.log(res);
-        // dispatch(
-        //   setUser({
-        //     username: user_id,
-        //     name: user_name,
-        //     email: user_email,
-        //     phone: phone_num,
-        //   }),
-        // );
-        history.push('/user/login');
+        console.log(res);
+        dispatch(
+          setUser({
+            username: user_id,
+            name: user_name,
+            email: user_email,
+            phone: phone_num,
+          }),
+        );
+        history.push('/');
       })
       .catch((e) => {
         console.log('에러 발생:', e);

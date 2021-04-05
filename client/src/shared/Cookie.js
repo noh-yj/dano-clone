@@ -5,7 +5,19 @@ const setCookie = (name, value, exp = 5) => {
 };
 
 const deleteCookie = (name) => {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:00 GMT;';
+  document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
 };
 
-export { setCookie, deleteCookie };
+const getCookie = (name) => {
+  let value = '; ' + document.cookie;
+  let parts = value.split(';  ' + name + '=');
+  if (parts.length === 2) {
+    return parts.pop().split(';').shift();
+  } else if (parts === '; ') {
+    return undefined;
+  } else {
+    return parts.pop().split('=')[1];
+  }
+};
+
+export { setCookie, deleteCookie, getCookie };
