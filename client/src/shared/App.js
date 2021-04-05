@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import { history } from '../redux/configureStore';
+import { getCookie } from '../shared/Cookie';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
@@ -23,6 +26,14 @@ import Cart from '../pages/Cart';
 import DetailProduct from '../pages/DetailProduct';
 
 function App() {
+  const dispatch = useDispatch();
+  const cookie = getCookie('is_login') ? true : false;
+  useEffect(() => {
+    if (cookie) {
+      dispatch(userActions.getUserDB());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <ConnectedRouter history={history}>
