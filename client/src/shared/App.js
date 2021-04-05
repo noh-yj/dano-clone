@@ -20,6 +20,7 @@ import Prepare from '../pages/Prepare';
 import Mypage from '../pages/Mypage';
 import Userinfo from '../pages/Userinfo';
 import Cart from '../pages/Cart';
+import DetailProduct from '../pages/DetailProduct';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
         <Route path='/mypage' exact component={Mypage} />
         <Route path='/user/mypage' exact component={Userinfo} />
         <Route path='/cart' exact component={Cart} />
+        <Route path='/detail/product/:id' exact component={DetailProduct} />
       </ConnectedRouter>
     </>
   );

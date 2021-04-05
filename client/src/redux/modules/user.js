@@ -50,8 +50,6 @@ const getUserDB = () => {
             phone: res.data.phone,
           }),
         );
-        window.alert('회원정보 수정이 완료되었습니다!');
-        history.push('/');
       })
       .catch((e) => {
         console.log('에러발생', e);
@@ -101,6 +99,7 @@ const LoginDB = (user_id, password) => {
     })
       .then((res) => {
         console.log(res);
+        setCookie('is_login', res.request.response);
         dispatch(
           setUser({
             username: user_id,
@@ -128,16 +127,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
       },
     })
       .then((res) => {
-        console.log(res);
-        dispatch(
-          setUser({
-            username: user_id,
-            name: user_name,
-            email: user_email,
-            phone: phone_num,
-          }),
-        );
-        history.push('/');
+        history.push('/user/login');
       })
       .catch((e) => {
         console.log('에러 발생:', e);
@@ -156,7 +146,6 @@ export default handleActions(
   {
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        setCookie('is_login', 'danoclone login success!');
         draft.user = action.payload.user;
         draft.is_login = true;
       }),
