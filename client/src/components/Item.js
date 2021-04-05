@@ -9,13 +9,6 @@ function Item(props) {
       <ItemContainer>
         <ItemBody>
           <Img src={props.image_url} alt='item-img' />
-
-          <CartContainer>
-            <CartImg
-              src='https://danoshop.net/mall/upload/resource/common/order-cart-ic.svg'
-              alt='장바구니 담기'
-            />
-          </CartContainer>
         </ItemBody>
         <ItemInfo>
           <Title>{props.product_name}</Title>
@@ -35,7 +28,6 @@ const ItemContainer = styled.div`
   width: 274px;
   margin-right: 10px;
   margin-bottom: 50px;
-  position: relative;
   height: 389px;
   background-color: rgb(255, 255, 255);
   border: none;
@@ -53,18 +45,7 @@ const Img = styled.img`
   width: 100%;
   z-index: 1;
 `;
-const CartContainer = styled.div`
-  position: absolute;
-  display: inline-block;
-  box-sizing: border-box;
-  z-index: 5;
-  right: 16px;
-  bottom: 128px;
-  cursor: pointer;
-`;
-const CartImg = styled.img`
-  width: 45px;
-`;
+
 const ItemInfo = styled.div`
   margin: 0 5px;
   cursor: default;
