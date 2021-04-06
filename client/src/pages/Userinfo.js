@@ -1,16 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DeleteModal from '../components/DeleteModal';
 import { emailCheck, phone_numCheck } from '../shared/common';
+import { getCookie } from '../shared/Cookie';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 
 function Userinfo(props) {
+  const { history } = props;
+  const cookie = getCookie('is_login') ? true : false;
+  useEffect(() => {
+    if (!cookie) {
+      window.alert('잘못된 접근입니다!');
+      history.replace('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+  const username = user?.username;
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
-  const [user_email, setUserEmail] = useState('');
-  const [phone_num, setPhoneNum] = useState('');
+  const [user_email, setUserEmail] = useState(user?.email);
+  const [phone_num, setPhoneNum] = useState(user?.phone);
   const [deleteModal, setDeleteModal] = useState(false);
+
   const OpenModal = () => {
     setDeleteModal(true);
   };
@@ -51,6 +67,9 @@ function Userinfo(props) {
       window.alert('핸드폰 형식이 맞지 않습니다.');
       return;
     }
+    dispatch(
+      userActions.updateUserDB(username, password, user_email, phone_num),
+    );
   };
   return (
     <>
@@ -69,7 +88,7 @@ function Userinfo(props) {
           <InfoItem>
             <Title>아이디</Title>
             <InputBox>
-              <DisableInput type='text' disabled />
+              <DisableInput type='text' disabled value={user?.username} />
             </InputBox>
           </InfoItem>
           <InfoItem>
@@ -98,7 +117,7 @@ function Userinfo(props) {
           <InfoItem>
             <Title>이름</Title>
             <InputBox>
-              <DisableInput type='text' disabled />
+              <DisableInput type='text' disabled value={user?.name} />
             </InputBox>
           </InfoItem>
           <InfoItem>
@@ -109,6 +128,7 @@ function Userinfo(props) {
                 onChange={(e) => {
                   setUserEmail(e.target.value);
                 }}
+                value={user_email}
               />
             </InputBox>
           </InfoItem>
@@ -120,6 +140,7 @@ function Userinfo(props) {
                 onChange={(e) => {
                   setPhoneNum(e.target.value);
                 }}
+                value={phone_num}
               />
             </InputBox>
           </InfoItem>
@@ -135,7 +156,7 @@ function Userinfo(props) {
           </SubmitContainer>
         </Container>
       </div>
-      <DeleteModal status={deleteModal} close={CloseModal} />
+      <DeleteModal user={user} status={deleteModal} close={CloseModal} />
       <Footer />
     </>
   );

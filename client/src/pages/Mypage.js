@@ -1,10 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useSelector } from 'react-redux';
+import { getCookie } from '../shared/Cookie';
 
 function Mypage(props) {
+  const cookie = getCookie('is_login') ? true : false;
+  useEffect(() => {
+    if (!cookie) {
+      window.alert('잘못된 접근입니다!');
+      history.replace('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const { history } = props;
+  const username = useSelector((state) => state.user.user?.username);
+
   return (
     <>
       <Header />
@@ -32,7 +44,7 @@ function Mypage(props) {
 
           <li
             onClick={() => {
-              history.push('/user/mypage');
+              history.push(`/user/mypage/${username}`);
             }}
           >
             회원정보수정
