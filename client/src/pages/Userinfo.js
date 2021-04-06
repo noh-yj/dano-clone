@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import DeleteModal from '../components/DeleteModal';
 import { emailCheck, phone_numCheck } from '../shared/common';
+import { getCookie } from '../shared/Cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
 
 function Userinfo(props) {
+  const { history } = props;
+  const cookie = getCookie('is_login') ? true : false;
+  useEffect(() => {
+    if (!cookie) {
+      window.alert('잘못된 접근입니다!');
+      history.replace('/');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
   const [password, setPassword] = useState('');

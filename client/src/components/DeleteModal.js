@@ -6,7 +6,7 @@ import { actionCreators as userActions } from '../redux/modules/user';
 
 function DeleteModal({ user, status, close }) {
   const dispatch = useDispatch();
-  const username = user.username;
+  const username = user?.username;
   const deleteBtn = () => {
     dispatch(userActions.deleteUserDB(username));
   };
