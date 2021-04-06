@@ -2,14 +2,16 @@ import React from 'react';
 import styled from "styled-components";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-
+import {useSelector} from "react-redux";
 
 function Cart(props) {
     const { history } = props;
+    const product_info = useSelector(state => state.cart.cart_list);
+    console.log(product_info);
 
     return (
         <React.Fragment>
-        <div classNAme="Cart">
+        <div className="Cart">
             <Header/>
                 <Container>
                     <Title>
@@ -31,25 +33,37 @@ function Cart(props) {
                             </tr>
                         </Thead>
                         <Tbody>
-                            <Img src={props.image_url} alt='item-img'/>
-                            <Title>{props.product_name}</Title>
-                            <Title>{props.product_quantity}</Title>
-                            <Title>{props.product_price}</Title>
+                            <tr>
+                                <td><InfoBox>
+                                    <img src={product_info.image_url} alt='item-img' style={{width: 90, height:90, borderRadius: 8}}/>
+                                    {product_info.product_name}
+                                </InfoBox></td>
+                            </tr>
+                            <tr style={{marginLeft: 40}}>
+                                <td>
+                                    <ItemQuantityBox>{product_info.product_quantity}</ItemQuantityBox>
+                                </td>
+                            </tr>
+                            <tr style={{marginLeft: 170}}>
+                                <td>
+                                <ItemPrice>{product_info.product_price}*{product_info.product_quantity}</ItemPrice></td></tr>
                         </Tbody>
+                            
                     </CartContainer>
                     <PriceContainer>
                         <PriceHead>
                             <tr>
-                                <td>총 상품 금액</td>
+                                <td>총 상품</td>
                                 <td>총 할인가격</td>
                                 <td>총 결제금액</td>
                             </tr>
                         </PriceHead>
                         <PriceBody>
                             <tr>
-                                <td>{props.product_price}원</td>
-                                <td>0 원</td>
-                                <td>{props.product_price}원</td>
+                                <td>{product_info.product_price}원</td>
+                                <span style={{border:5}}>-</span>
+                                <td>0 원</td><span>=</span>
+                                <td>{product_info.product_price}원</td>
                             </tr>
                         </PriceBody>
                     </PriceContainer>
@@ -61,8 +75,10 @@ function Cart(props) {
                         >
                             쇼핑하러 가기
                         </ShoppingBtn>
-                        <PurchaseBtn>
+                        <PurchaseBtn onClick={() => {history.push('/OrderList');}}>
                             구매하기
+                            {/* // 장바구니에서 구매 목록으로 데이터 모두 넘어가기
+                            // 장바구니에서 데이터 모두 삭제 */}
                         </PurchaseBtn>
                     </Btn>
                 </Container>    
@@ -76,7 +92,6 @@ const Container = styled.div`
     // width: 1140px;
     margin: auto; 
     display: table;
-
 `;
 
 const CartContainer = styled.div`
@@ -110,13 +125,10 @@ const RightArrow = styled.div`
 const Thead = styled.div`
     background: rgb(248, 248, 248);
     border-top: 2px solid rgb(51, 51, 51);
-    // display: table-header-group;
-    // vertical-align: middle;
-    // border-color: inherit;
-    // border-collapse: separate;
-    // border-spacing: 0 10px;
     width: 700px;
-    display: table;   
+    height: 50px;
+    display: table;
+    text-align: center;
 `;
 const PriceContainer = styled.div`
     // border-top: 2px solid rgb(51, 51, 51);
@@ -129,16 +141,31 @@ const PriceHead = styled.div`
     background: rgb(248, 248, 248);
     border-top: 2px solid rgb(51, 51, 51);
     width: 700px;
+    height: 50px;
     display: table;
+    text-align: center;
+
 `;
 const PriceBody = styled.div`
     // border-bottom: 1px solid rgb(51, 51, 51);
     width: 700px;
     display: table;
 `;
-const Img = styled.div`
-    display: table;
-
+const InfoBox = styled.div`
+    // width: 50px;
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+`;
+const ItemQuantityBox = styled.div`
+    text-align: center;
+    font-size: 14px;
+    display: flex;
+`;
+const ItemPrice = styled.div`
+    text-align: center;
+    font-size: 14px;
+    display: flex;
 `;
 const Title = styled.div`
     // display: table;
@@ -150,8 +177,8 @@ const Title = styled.div`
 
 `;
 const Tbody = styled.div`
-    display: table;
-
+    width: 700px;
+    display: flex;
 `;
 const Btn = styled.div`
     margin: 50px 90px;

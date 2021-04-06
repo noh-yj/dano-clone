@@ -14,6 +14,7 @@ const initialState = {
   is_loading: false,
 };
 
+
 const getItemDB = () => {
   return function (dispatch, getState, { history }) {
     dispatch(loading(true));
