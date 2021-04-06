@@ -27,6 +27,16 @@ function Main(props) {
   const lightFood = products.slice(88, 96);
   const bigSail = products.slice(42, 46);
   const snack = products.slice(104, 108);
+  const popularProducts = products
+    .filter((val) => {
+      return val.trending === true;
+    })
+    .slice(24, 40);
+  const freeProducts = products
+    .filter((val) => {
+      return val.free === true;
+    })
+    .slice(8, 20);
 
   return (
     <>
@@ -51,7 +61,22 @@ function Main(props) {
               );
             })}
           </MiniContainer>
-          {/* 이번주 베스트 인기상품 16개 */}
+
+          <Container text='이번주 베스트 인기상품' main>
+            {popularProducts.map((val) => {
+              return (
+                <div
+                  key={val.id}
+                  onClick={() => {
+                    history.push(`/detail/product/${val.id}`);
+                    window.scrollTo({ top: 0, left: 0 });
+                  }}
+                >
+                  <Item key={val.id} {...val} />
+                </div>
+              );
+            })}
+          </Container>
           <MainPageBanner
             src={
               'https://danoshop.net/mall/upload/2021/03/19/0322_WMB_single.png'
@@ -62,13 +87,13 @@ function Main(props) {
             {useFulProducts.map((val) => {
               return (
                 <div
-                  key={val?.id}
+                  key={val.id}
                   onClick={() => {
                     history.push(`/detail/product/${val.id}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item key={val?.id} {...val} />
+                  <Item key={val.id} {...val} />
                 </div>
               );
             })}
@@ -109,7 +134,22 @@ function Main(props) {
               'https://danoshop.net/mall/upload/2021/04/02/0405_WMB_chai.png'
             }
           />
-          {/* 무료배송 12개 */}
+
+          <Container text='무료배송' main>
+            {freeProducts.map((val) => {
+              return (
+                <div
+                  key={val.id}
+                  onClick={() => {
+                    history.push(`/detail/product/${val.id}`);
+                    window.scrollTo({ top: 0, left: 0 });
+                  }}
+                >
+                  <Item key={val.id} {...val} />
+                </div>
+              );
+            })}
+          </Container>
           <Container text='입맛 달래주는 착한 간식' main>
             {snack.map((val) => {
               return (

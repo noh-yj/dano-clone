@@ -38,7 +38,6 @@ const deleteUserDB = (username) => {
 const getUserDB = () => {
   return function (dispatch, getState, { history }) {
     const jwtToken = getCookie('is_login');
-    console.log(jwtToken);
     axios({
       method: 'post',
       url: `${config.api}/api/getUser`,
@@ -47,7 +46,6 @@ const getUserDB = () => {
       },
     })
       .then((res) => {
-        console.log(res);
         dispatch(
           getUser({
             username: res.data.username,
@@ -97,15 +95,14 @@ const LoginDB = (user_id, password) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: `${config.api}/api/login`,
+      url: `${config.api}/authenticate`,
       data: {
         username: user_id,
         password: password,
       },
     })
       .then((res) => {
-        console.log(res);
-        const jwtToken = res.request.response;
+        const jwtToken = res.data.jwt;
         setCookie('is_login', jwtToken);
         dispatch(
           setUser({
@@ -124,7 +121,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: `${config.api}/api/signup`,
+      url: `${config.api}/user/signup`,
       data: {
         username: user_id,
         password: password,
@@ -134,6 +131,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
       },
     })
       .then((res) => {
+        console.log(res);
         history.push('/user/login');
       })
       .catch((e) => {
