@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 
 function Container(props) {
-  const { children, text } = props;
+  const { children, text, main } = props;
+
   return (
     <>
       <ContainerBox>
-        <TextBox>{text}</TextBox>
+        <TextBox main={main}>{text}</TextBox>
         {children}
       </ContainerBox>
     </>
@@ -23,7 +24,7 @@ const ContainerBox = styled.div`
 const TextBox = styled.div`
   padding: 60px 0 40px;
   text-align: left;
-  font-size: 20px;
+  font-size: ${(props) => (props.main ? '25px' : '20px')};
   width: 1140px;
   font-weight: bold;
   color: rgb(34, 34, 34);

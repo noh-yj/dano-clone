@@ -25,6 +25,7 @@ function MiniItem(props) {
 
 const ItemContainer = styled.div`
   width: 275px;
+  margin-top: 25px;
   margin-right: 10px;
   margin-bottom: 50px;
   position: relative;
@@ -46,6 +47,7 @@ const Img = styled.img`
 
 const ItemInfo = styled.div`
   margin: 0 5px;
+  margin-top: 15px;
   cursor: default;
   text-align: center;
 `;
@@ -58,7 +60,6 @@ const Title = styled.span`
   line-height: 21px;
   padding-bottom: 14px;
   color: rgb(59, 59, 59);
-  margin-top: 15px;
   height: 22px;
   cursor: pointer;
 `;
