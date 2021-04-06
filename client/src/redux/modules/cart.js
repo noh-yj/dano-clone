@@ -30,6 +30,13 @@ export default handleActions(
   }, initialState // 기본값
 );
 
+// // 데이터 불러오기 (주문 목록으로)
+// const getItemDB = () => {
+//   return function (dispatch, getState, { history }) {
+//     const itemDB = 
+//   }
+// }
+
 // // 미들웨어 -> 서버로 전달
 // const addItemDB = () => {
 //   return function (dispatch, getState, { history }) {

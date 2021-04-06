@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 
 const Footer = () => {
   return (
@@ -12,7 +13,10 @@ const Footer = () => {
       </Banner>
       <MainFooter>
         <ContactBlock>
-          <Title> 무엇을 도와드릴까요 </Title>
+          <Title> 
+          <HeadsetMicIcon variant="contained" color="primary"/>
+          &nbsp;무엇을 도와드릴까요 
+          </Title>
           <ContactTime>
             평일 10:00 ~ 18:00 (주말 및 공휴일 휴무) <br />
             점심시간 12:30 ~ 13:30{' '}
@@ -22,9 +26,9 @@ const Footer = () => {
           <FirstBlock>
             <Title> 다노샵 </Title>
             <Contents>
-              채팅 상담하기 <br />
+            <Highlight>채팅 상담하기</Highlight>
               <hr style={{ width: 200 }} />
-              문의 글 남기기 <br />
+              문의 글 남기기 
               <hr style={{ width: 200 }} />
               전화 문의하기 (02-2135-1885)
             </Contents>
@@ -34,7 +38,7 @@ const Footer = () => {
           <Title> 마이다노 </Title>
           <Contents>
             {' '}
-            채팅 상담하기 <br />
+            <Highlight>채팅 상담하기</Highlight>
             <hr style={{ width: 200 }} />
             문의 글 남기기{' '}
           </Contents>
@@ -84,7 +88,7 @@ const Footer = () => {
 
       <Bottom>
         <Text>
-          다노샵 소개 | 통합 약관 | 이용 약관 | <span>개인정보처리방침</span>
+          다노샵 소개 | 통합 약관 | 이용 약관 | <strong>개인정보처리방침</strong>
           <br />
           <br />
           대표:정범윤 | 주소:서울시 마포구 토정로 271 (주)다노 |
@@ -198,14 +202,16 @@ const Bottom = styled.div`
   background-color: #f3f3f3;
   font-size: 12px;
   padding: 30px;
-  .span {
-    font-weight: bold;
-  }
 `;
 
 const Text = styled.div`
   width: 1140px;
   margin: 0 auto;
+  font-color: A1A1A1;
+  `;
+
+const Highlight = styled.div`
+color: #ff6f61;
 `;
 
 const Banner = styled.div`

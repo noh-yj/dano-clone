@@ -9,8 +9,7 @@ import { actionCreators as userActions } from '../redux/modules/user';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
-import OrderList from '../pages/OrderList';
-import ShoppingBag from '../pages/ShoppingBag';
+import Purchase from '../pages/Purchase';
 import NonUserOrderList from '../pages/NonUserOrderList';
 import Allproducts from '../pages/Allproducts';
 import DanoInfo from '../pages/DanoInfo';
@@ -40,8 +39,8 @@ function App() {
         <Route path='/' exact component={Main} />
         <Route path='/user/login' exact component={Login} />
         <Route path='/user/signup' exact component={Signup} />
-        <Route path='/shoppingbag' exact component={ShoppingBag} />
-        <Route path='/orderlist' exact component={OrderList} />
+        <Route path='/cart' exact component={Cart} />
+        <Route path='/purchase' exact component={Purchase} />
         <Route path='/nonuserorderlist' exact component={NonUserOrderList} />
         <Route path='/products/allproducts' exact component={Allproducts} />
         <Route path='/danoinfo' exact component={DanoInfo} />
@@ -57,7 +56,6 @@ function App() {
         <Route path='/prepare' exact component={Prepare} />
         <Route path='/mypage' exact component={Mypage} />
         <Route path='/user/mypage/:id' exact component={Userinfo} />
-        <Route path='/cart' exact component={Cart} />
         <Route path='/detail/product/:id' exact component={DetailProduct} />
       </ConnectedRouter>
     </>
