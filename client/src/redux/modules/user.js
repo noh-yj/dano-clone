@@ -29,6 +29,7 @@ const deleteUserDB = (username) => {
       url: `${config.api}/api/unregister/${username}`,
     }).then((res) => {
       dispatch(deleteUser());
+      window.alert('회원탈퇴가 완료되었습니다..😭');
       history.replace('/');
     });
   };
@@ -62,9 +63,8 @@ const getUserDB = () => {
 };
 
 // 회원 정보 수정
-const updateUserDB = (password, email, phone) => {
+const updateUserDB = (username, password, email, phone) => {
   return function (dispatch, getState, { history }) {
-    const username = getState().user.username;
     axios({
       method: 'put',
       url: `${config.api}/api/userEdit`,
@@ -76,14 +76,17 @@ const updateUserDB = (password, email, phone) => {
       },
     })
       .then((res) => {
+        const name = getState().user.user.name;
         dispatch(
           updateUser({
             username: username,
-            password: password,
+            name: name,
             email: email,
             phone: phone,
           }),
         );
+        window.alert('회원정보가 변경되었습니다!');
+        history.replace('/');
       })
       .catch((e) => {
         console.log('에러발생', e);
@@ -96,18 +99,22 @@ const LoginDB = (user_id, password) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: `${config.api}/authenticate`,
+      url: `${config.api}/api/login`,
       data: {
         username: user_id,
         password: password,
       },
     })
       .then((res) => {
-        const jwtToken = res.data.jwt;
+        console.log(res);
+        const jwtToken = res.data.message1.jwt;
         setCookie('is_login', jwtToken);
         dispatch(
           setUser({
             username: user_id,
+            name: res.data.message2.name,
+            email: res.data.message2.email,
+            phone: res.data.message2.phone,
           }),
         );
         history.push('/');

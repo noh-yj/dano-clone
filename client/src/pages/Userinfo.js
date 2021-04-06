@@ -20,6 +20,7 @@ function Userinfo(props) {
   }, []);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const username = user?.username;
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
   const [user_email, setUserEmail] = useState(user?.email);
@@ -66,7 +67,9 @@ function Userinfo(props) {
       window.alert('핸드폰 형식이 맞지 않습니다.');
       return;
     }
-    dispatch(userActions.updateUserDB(password, user_email, phone_num));
+    dispatch(
+      userActions.updateUserDB(username, password, user_email, phone_num),
+    );
   };
   return (
     <>
