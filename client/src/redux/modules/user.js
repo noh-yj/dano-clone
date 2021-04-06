@@ -22,11 +22,11 @@ const initialState = {
 };
 
 // 회원 탈퇴
-const deleteUserDB = (id) => {
+const deleteUserDB = (username) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'delete',
-      url: `${config.api}/api/deleteuser`,
+      url: `${config.api}/api/deleteuser?username=${username}`,
     }).then((res) => {
       dispatch(deleteUser());
       history.push('/');
@@ -34,14 +34,15 @@ const deleteUserDB = (id) => {
   };
 };
 
-// 수정페이지 회원정보 조회 시 필요
+//회원정보 조회
 const getUserDB = () => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'get',
-      url: `${config.api}/api/getuser`,
+      url: `${config.api}/api/getUser`,
     })
       .then((res) => {
+        console.log(res);
         dispatch(
           getUser({
             username: res.data.username,
@@ -99,7 +100,9 @@ const LoginDB = (user_id, password) => {
     })
       .then((res) => {
         console.log(res);
-        setCookie('is_login', res.request.response);
+        // const jwtHeader = res.request.response.split('.');
+        // jwtHeader[0]
+        setCookie('is_login', 'dano_clone_login_success');
         dispatch(
           setUser({
             username: user_id,
@@ -134,13 +137,6 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
       });
   };
 };
-
-// 로그아웃
-// const logoutDB = () => {
-//   return function (dispatch) {
-//     dispatch(logOut());
-//   };
-// };
 
 export default handleActions(
   {
