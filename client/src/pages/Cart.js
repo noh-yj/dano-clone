@@ -3,11 +3,13 @@ import styled from "styled-components";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+
 function Cart(props) {
     const { history } = props;
 
     return (
         <React.Fragment>
+        <div classNAme="Cart">
             <Header/>
                 <Container>
                     <Title>
@@ -31,6 +33,8 @@ function Cart(props) {
                         <Tbody>
                             <Img src={props.image_url} alt='item-img'/>
                             <Title>{props.product_name}</Title>
+                            <Title>{props.product_quantity}</Title>
+                            <Title>{props.product_price}</Title>
                         </Tbody>
                     </CartContainer>
                     <PriceContainer>
@@ -50,7 +54,11 @@ function Cart(props) {
                         </PriceBody>
                     </PriceContainer>
                     <Btn>
-                        <ShoppingBtn>
+                        <ShoppingBtn
+                        onClick={() => {
+                            history.push('/');
+                          }}
+                        >
                             쇼핑하러 가기
                         </ShoppingBtn>
                         <PurchaseBtn>
@@ -59,8 +67,8 @@ function Cart(props) {
                     </Btn>
                 </Container>    
             <Footer/>
-        </React.Fragment>
-        
+        </div>
+    </React.Fragment>
     )
 }
 
@@ -99,8 +107,6 @@ const RightArrow = styled.div`
     display:inline-block;
     margin-right: 5px;
     `;
-
-
 const Thead = styled.div`
     background: rgb(248, 248, 248);
     border-top: 2px solid rgb(51, 51, 51);
@@ -113,20 +119,20 @@ const Thead = styled.div`
     display: table;   
 `;
 const PriceContainer = styled.div`
-    border-top: 2px solid rgb(51, 51, 51);
+    // border-top: 2px solid rgb(51, 51, 51);
     display: table;
     width: 700px;
     text-align: center;
-
+    margin-bottom: 80px;
 `;
-
 const PriceHead = styled.div`
     background: rgb(248, 248, 248);
+    border-top: 2px solid rgb(51, 51, 51);
     width: 700px;
     display: table;
 `;
 const PriceBody = styled.div`
-    border-bottom: 1px solid rgb(51, 51, 51);
+    // border-bottom: 1px solid rgb(51, 51, 51);
     width: 700px;
     display: table;
 `;
@@ -148,7 +154,7 @@ const Tbody = styled.div`
 
 `;
 const Btn = styled.div`
-    display: flex;
+    margin: 50px 90px;
     
 
 `;

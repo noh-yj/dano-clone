@@ -25,7 +25,10 @@ const ShoppingBag = (props) => {
                     <List>
                         장바구니에 담긴 상품이 없습니다.
                     </List>
-                    <Btn>
+                    <Btn
+                    onClick={() => {
+                        history.push('/products/popularproducts');
+                      }}>
                         추천상품 보러가기
                     </Btn>
                 </CartContainer>
