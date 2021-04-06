@@ -2,11 +2,11 @@ import React from 'react';
 import styled from "styled-components";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 function Cart(props) {
     const { history } = props;
-    const product_info = useSelector(state => state.cart.cart_list);
+    const product_info = useSelector(state => state.cart.cart_list[0]);
     console.log(product_info);
 
     return (
@@ -131,11 +131,10 @@ const Thead = styled.div`
     text-align: center;
 `;
 const PriceContainer = styled.div`
-    // border-top: 2px solid rgb(51, 51, 51);
     display: table;
-    width: 700px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
     text-align: center;
-    margin-bottom: 80px;
 `;
 const PriceHead = styled.div`
     background: rgb(248, 248, 248);

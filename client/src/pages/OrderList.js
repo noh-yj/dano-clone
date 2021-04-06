@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const OrderList = (props) => {
-    const { history } = props;
     
     return (
         <React.Fragment>

@@ -30,24 +30,24 @@ export default handleActions(
   }, initialState // 기본값
 );
 
-// 미들웨어 -> 서버로 전달
-const addItemDB = () => {
-  return function (dispatch, getState, { history }) {
-    // history.push 여기서 써줌
-    // getState -> state에 접근한다는 뜻
-// 여기 이해안됨
-        axios({
-          method: 'post',
-          url: `${config.api}/api/product`,
-        })
-          .then((res) => {
-            let item_list = [...res.data];
-            console.log('helloworld',item_list)
-            dispatch(addItem(item_list));
-          })
-          .catch((e) => console.log(e));
-      };
-    };
+// // 미들웨어 -> 서버로 전달
+// const addItemDB = () => {
+//   return function (dispatch, getState, { history }) {
+//     // history.push 여기서 써줌
+//     // getState -> state에 접근한다는 뜻
+// // 여기 이해안됨
+//         axios({
+//           method: 'post',
+//           url: `${config.api}/api/user/cart`,
+//         })
+//           .then((res) => {
+//             let item_list = [...res.data];
+//             console.log('helloworld',item_list)
+//             dispatch(addItem(item_list));
+//           })
+//           .catch((e) => console.log(e));
+//       };
+//     };
 
 
 const actionCreators = {
