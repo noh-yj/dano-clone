@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
-import { setCookie, deleteCookie } from '../../shared/Cookie';
+import { setCookie, deleteCookie, getCookie } from '../../shared/Cookie';
 import axios from 'axios';
 import { config } from '../../config';
 
@@ -37,12 +37,15 @@ const deleteUserDB = (username) => {
 //회원정보 조회
 const getUserDB = () => {
   return function (dispatch, getState, { history }) {
+    const jwtToken = getCookie('is_login');
     axios({
-      method: 'get',
+      method: 'post',
       url: `${config.api}/api/getUser`,
+      data: {
+        token: jwtToken,
+      },
     })
       .then((res) => {
-        console.log(res);
         dispatch(
           getUser({
             username: res.data.username,
@@ -92,17 +95,15 @@ const LoginDB = (user_id, password) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: `${config.api}/api/login`,
+      url: `${config.api}/authenticate`,
       data: {
         username: user_id,
         password: password,
       },
     })
       .then((res) => {
-        console.log(res);
-        // const jwtHeader = res.request.response.split('.');
-        // jwtHeader[0]
-        setCookie('is_login', 'dano_clone_login_success');
+        const jwtToken = res.data.jwt;
+        setCookie('is_login', jwtToken);
         dispatch(
           setUser({
             username: user_id,
@@ -120,7 +121,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: `${config.api}/api/signup`,
+      url: `${config.api}/user/signup`,
       data: {
         username: user_id,
         password: password,
@@ -130,6 +131,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
       },
     })
       .then((res) => {
+        console.log(res);
         history.push('/user/login');
       })
       .catch((e) => {

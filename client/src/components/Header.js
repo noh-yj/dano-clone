@@ -11,7 +11,7 @@ function Header(props) {
   let menustyle;
   menu ? (menustyle = { display: 'block' }) : (menustyle = { display: 'none' });
   const user = useSelector((state) => state.user);
-  console.log(user);
+  console.log(user.user);
   // const username = user.user.name
   // const is_login = user.is_login;
   const cookie = getCookie('is_login') ? true : false;
