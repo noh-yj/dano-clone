@@ -26,10 +26,10 @@ const deleteUserDB = (username) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'delete',
-      url: `${config.api}/api/deleteuser?username=${username}`,
+      url: `${config.api}/api/unregister/${username}`,
     }).then((res) => {
       dispatch(deleteUser());
-      history.push('/');
+      history.replace('/');
     });
   };
 };
@@ -64,11 +64,12 @@ const getUserDB = () => {
 // 회원 정보 수정
 const updateUserDB = (password, email, phone) => {
   return function (dispatch, getState, { history }) {
+    const username = getState().user.username;
     axios({
       method: 'put',
-      url: `${config.api}/api/updateuser`,
+      url: `${config.api}/api/userEdit`,
       data: {
-        username: getState().user.username,
+        username: username,
         password: password,
         email: email,
         phone: phone,
@@ -77,7 +78,7 @@ const updateUserDB = (password, email, phone) => {
       .then((res) => {
         dispatch(
           updateUser({
-            username: getState().user.username,
+            username: username,
             password: password,
             email: email,
             phone: phone,

@@ -11,13 +11,10 @@ function Header(props) {
   let menustyle;
   menu ? (menustyle = { display: 'block' }) : (menustyle = { display: 'none' });
   const user = useSelector((state) => state.user);
-  console.log(user.user);
-  // const username = user.user.name
-  // const is_login = user.is_login;
+  const username = user.user?.name;
+  const is_login = user.is_login;
   const cookie = getCookie('is_login') ? true : false;
-  // console.log(getCookie('is_login'));
-  // console.log(cookie, is_login);
-  if (cookie) {
+  if (cookie && is_login) {
     return (
       <>
         <Container>
@@ -43,7 +40,7 @@ function Header(props) {
                   history.push('/mypage');
                 }}
               >
-                name님
+                {username}님
               </HeaderLi>
               <HeaderLi
                 onClick={() => {

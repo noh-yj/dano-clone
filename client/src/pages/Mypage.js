@@ -2,9 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useSelector } from 'react-redux';
 
 function Mypage(props) {
   const { history } = props;
+  const username = useSelector((state) => state.user.user?.username);
+
   return (
     <>
       <Header />
@@ -32,7 +35,7 @@ function Mypage(props) {
 
           <li
             onClick={() => {
-              history.push('/user/mypage');
+              history.push(`/user/mypage/${username}`);
             }}
           >
             회원정보수정

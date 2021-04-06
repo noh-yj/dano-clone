@@ -1,8 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
+import { useDispatch } from 'react-redux';
+import { actionCreators as userActions } from '../redux/modules/user';
 
-function DeleteModal({ status, close }) {
+function DeleteModal({ user, status, close }) {
+  const dispatch = useDispatch();
+  const username = user.username;
+  const deleteBtn = () => {
+    dispatch(userActions.deleteUserDB(username));
+  };
+
   return (
     <>
       {status ? (
@@ -10,7 +18,7 @@ function DeleteModal({ status, close }) {
           <Component onClick={close} />
           <ModalContainer>
             <Title>정말로 탈퇴하시겠습니까?</Title>
-            <Button variant='contained' color='secondary'>
+            <Button variant='contained' color='secondary' onClick={deleteBtn}>
               탈퇴하기
             </Button>
           </ModalContainer>

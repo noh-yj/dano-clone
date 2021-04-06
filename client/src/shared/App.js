@@ -56,7 +56,7 @@ function App() {
         <Route path='/products/freeproducts' exact component={Freeproducts} />
         <Route path='/prepare' exact component={Prepare} />
         <Route path='/mypage' exact component={Mypage} />
-        <Route path='/user/mypage' exact component={Userinfo} />
+        <Route path='/user/mypage/:id' exact component={Userinfo} />
         <Route path='/cart' exact component={Cart} />
         <Route path='/detail/product/:id' exact component={DetailProduct} />
       </ConnectedRouter>
