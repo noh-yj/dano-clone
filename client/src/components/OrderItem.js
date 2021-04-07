@@ -2,27 +2,23 @@ import React from 'react';
 import styled from 'styled-components';
 
 function OrderItem(props) {
+  console.log(props);
   return (
     <>
       <>
         <Tr>
           <td>
             <ItemBox>
-              <img
-                src={
-                  'https://danoshop.net/mall/upload/2021/03/22/n6y6niunfvmv7mdy44e8.png'
-                }
-                alt='item-img'
-              />
+              <img src={props.image_url} alt='item-img' />
 
               <TitleBox>
-                <div>다노 프로틴 브라우니 1BOX (5개입)</div>
+                <div>{props.product_name}</div>
               </TitleBox>
             </ItemBox>
           </td>
-          <td>2</td>
+          <td>{props.count}</td>
           <td>
-            <Span>38,000</Span>원
+            <Span>{props.total_price}</Span>원
           </td>
           <td>
             <Span>무료</Span>

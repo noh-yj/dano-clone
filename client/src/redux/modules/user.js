@@ -106,7 +106,6 @@ const LoginDB = (user_id, password) => {
       },
     })
       .then((res) => {
-        console.log(res);
         const jwtToken = res.data.message1.jwt;
         setCookie('is_login', jwtToken);
         dispatch(
@@ -139,7 +138,6 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
       },
     })
       .then((res) => {
-        console.log(res);
         history.push('/user/login');
       })
       .catch((e) => {

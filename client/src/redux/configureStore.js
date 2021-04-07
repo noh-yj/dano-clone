@@ -5,12 +5,15 @@ import { connectRouter } from 'connected-react-router';
 import user from './modules/user';
 import product from './modules/product';
 import cart from './modules/cart';
+import order from './modules/order';
+
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
   user: user,
   product: product,
   cart: cart,
+  order: order,
   router: connectRouter(history),
 });
 

@@ -3,15 +3,21 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { actionCreators as productActions } from '../redux/modules/product';
+import { actionCreators as orderActions } from '../redux/modules/order';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCookie } from '../shared/Cookie';
 
 function DetailProduct(props) {
+  const { history } = props;
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const id = props.match.params.id;
+  const user_info = useSelector((state) => state.user.user);
+  const is_login = useSelector((state) => state.user.is_login);
   const products = useSelector((state) => state.product.list);
   const product_idx = products.findIndex((val) => val.id === parseInt(id));
   const product = products[product_idx];
+  const cookie = getCookie('is_login') ? true : false;
   useEffect(() => {
     if (product) {
       return;
@@ -26,6 +32,26 @@ function DetailProduct(props) {
   const result_price = total_price
     .toString()
     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
+
+  const order = () => {
+    const order_info = {
+      username: user_info?.username,
+      image_url: product.image_url,
+      product_name: product.product_name,
+      product_id: product.id,
+      price: product.price,
+      count: count,
+      total_price: result_price,
+    };
+    if (!is_login || !cookie) {
+      window.alert('로그인 후 시도해주세요!');
+      return;
+    }
+    dispatch(orderActions.addOrder(order_info));
+    window.alert('구매가 완료되었습니다 :)');
+    history.push('/purchase');
+  };
+
   return (
     <>
       <Header />
@@ -72,7 +98,7 @@ function DetailProduct(props) {
                 </TotalPrice>
                 <ButtonBox>
                   <CartBtn>장바구니 담기</CartBtn>
-                  <BuyBtn>바로 구매하기</BuyBtn>
+                  <BuyBtn onClick={order}>바로 구매하기</BuyBtn>
                 </ButtonBox>
               </InfoBox>
             </ItemInfoBox>

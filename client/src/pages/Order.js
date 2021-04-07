@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OrderItem from '../components/OrderItem';
+import { useSelector } from 'react-redux';
 
 function Order(props) {
+  const getOrder = useSelector((state) => state.order.list);
   return (
     <>
       <Header />
@@ -29,14 +31,15 @@ function Order(props) {
             </tr>
           </Thead>
           <Tbody>
-            {/* <tr style={{ height: '51px' }}>
-              <td colSpan='5'>구매한 내역이 없습니다 :)</td>
-            </tr> */}
-            {/* 상품이 존재할때 안할때 조건부 렌더링 */}
-            <OrderItem />
-            <OrderItem />
-            <OrderItem />
-            <OrderItem />
+            {getOrder.length === 0 ? (
+              <tr style={{ height: '51px' }}>
+                <td colSpan='5'>구매한 내역이 없습니다 :)</td>
+              </tr>
+            ) : (
+              getOrder.map((val, idx) => {
+                return <OrderItem key={idx} {...val} />;
+              })
+            )}
           </Tbody>
         </CartContainer>
         <br />
@@ -50,6 +53,7 @@ function Order(props) {
 const Container = styled.div`
   width: 1140px;
   margin: auto;
+  cursor: default;
 `;
 const Title = styled.div`
   font-size: 24px;
