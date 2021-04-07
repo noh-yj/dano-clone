@@ -9,14 +9,14 @@ const addItem = createAction(ADD_ITEM, (item) => ({ item })); // 액션 크리�
 
 const initialState = {
   cart_list: [
-    {
-      user_name: '',
-      image_url:
-        'https://danoshop.net/mall/upload/2019/03/04/brownie_hover_1.png',
-      product_name: '다노 프로틴 브라우니 1BOX (5개입)',
-      product_quantity: 2,
-      product_price: 16000,
-    },
+    // {
+    //   user_name: '',
+    //   image_url:
+    //     'https://danoshop.net/mall/upload/2019/03/04/brownie_hover_1.png',
+    //   product_name: '다노 프로틴 브라우니 1BOX (5개입)',
+    //   product_quantity: 2,
+    //   product_price: 16000,
+    // },
   ],
 };
 

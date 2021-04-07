@@ -4,9 +4,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 // import Empty from '../components/Empty';
 import ShoppingItem from '../components/ShoppingItem';
+import { useSelector } from 'react-redux';
+import Empty from "../components/Empty"
 
 function Shopping(props) {
   const { history } = props;
+  const product_info = useSelector(state => state.cart.cart_list);
   return (
     <>
       <Header />
@@ -20,10 +23,10 @@ function Shopping(props) {
             <RightArrow />
             03 주문완료
           </CurrentPage>
-        </Title>
-        {/* <Empty /> */}
-        {/* 상품이 존재할때 안할때 조건부 렌더링 */}
-        <CartContainer>
+        </Title> 
+{(product_info.length === 0)?<><Empty/></>
+    :<>
+          <CartContainer>
           <Thead>
             <tr>
               <th>상품정보</th>
@@ -64,6 +67,11 @@ function Shopping(props) {
             </tr>
           </PriceBody>
         </PriceContainer>
+          </>
+      }
+        {/* <Empty /> */}
+        {/* 상품이 존재할때 안할때 조건부 렌더링 */}
+       
         <Btn>
           <ShoppingBtn
             onClick={() => {
@@ -74,7 +82,7 @@ function Shopping(props) {
           </ShoppingBtn>
           <PurchaseBtn
             onClick={() => {
-              history.push('/OrderList');
+              history.push('/Purchase');
             }}
           >
             구매하기
