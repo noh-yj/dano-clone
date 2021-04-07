@@ -13,9 +13,40 @@ const Footer = () => {
       </Banner>
       <MainFooter>
         <ContactBlock>
-          <Title> 
-          <HeadsetMicIcon variant="contained" color="primary"/>
-          &nbsp;무엇을 도와드릴까요 
+          <Title>
+            <svg
+              width='1em'
+              height='1em'
+              viewBox='0 0 24 24'
+              fill='none'
+              xmlns='http://www.w3.org/2000/svg'
+              style={{
+                width: '24px',
+                height: '24px',
+                marginTop: '2px',
+                marginBottom: '6px',
+              }}
+            >
+              <path
+                d='M10.9949 19H8.3639C7.06437 19 6 17.986 6 16.7459V9.72089C6 6.57474 8.70013 4 12.0005 4C15.2999 4 18 6.57474 18 9.72089V16.5'
+                stroke='currentColor'
+              ></path>
+              <path
+                d='M18 10H19C20.1046 10 21 10.8954 21 12V14C21 15.1046 20.1046 16 19 16H18'
+                stroke='currentColor'
+              ></path>
+              <path
+                fill-rule='evenodd'
+                clip-rule='evenodd'
+                d='M13.7431 19.002C13.7431 19.8437 13.0599 20.5269 12.2181 20.5269C11.3764 20.5269 10.6932 19.8437 10.6932 19.002C10.6932 18.1602 11.3764 17.477 12.2181 17.477C13.0599 17.477 13.7431 18.1602 13.7431 19.002Z'
+                stroke='currentColor'
+              ></path>
+              <path
+                d='M6 10H5C3.89543 10 3 10.8954 3 12V14C3 15.1046 3.89543 16 5 16H6'
+                stroke='currentColor'
+              ></path>
+            </svg>
+            &nbsp;무엇을 도와드릴까요
           </Title>
           <ContactTime>
             평일 10:00 ~ 18:00 (주말 및 공휴일 휴무) <br />
@@ -26,9 +57,9 @@ const Footer = () => {
           <FirstBlock>
             <Title> 다노샵 </Title>
             <Contents>
-            <Highlight>채팅 상담하기</Highlight>
+              <Highlight>채팅 상담하기</Highlight>
               <hr style={{ width: 200 }} />
-              문의 글 남기기 
+              문의 글 남기기
               <hr style={{ width: 200 }} />
               전화 문의하기 (02-2135-1885)
             </Contents>
@@ -88,7 +119,8 @@ const Footer = () => {
 
       <Bottom>
         <Text>
-          다노샵 소개 | 통합 약관 | 이용 약관 | <strong>개인정보처리방침</strong>
+          다노샵 소개 | 통합 약관 | 이용 약관 |{' '}
+          <strong>개인정보처리방침</strong>
           <br />
           <br />
           대표:정범윤 | 주소:서울시 마포구 토정로 271 (주)다노 |
@@ -106,11 +138,10 @@ const Footer = () => {
 };
 
 const Container = styled.div`
-//   max-width: 100%;
+  //   max-width: 100%;
   max-height: 100%;
   margin: 0 auto;
-  item-align: center;
-
+  cursor: default;
 `;
 
 const MainFooter = styled.div`
@@ -207,11 +238,14 @@ const Bottom = styled.div`
 const Text = styled.div`
   width: 1140px;
   margin: 0 auto;
-  font-color: A1A1A1;
-  `;
+  color: #a1a1a1;
+  & strong {
+    color: #696969;
+  }
+`;
 
 const Highlight = styled.div`
-color: #ff6f61;
+  color: #ff6f61;
 `;
 
 const Banner = styled.div`

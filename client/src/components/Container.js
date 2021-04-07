@@ -28,6 +28,7 @@ const TextBox = styled.div`
   width: 1140px;
   font-weight: bold;
   color: rgb(34, 34, 34);
+  cursor: default;
 `;
 
 export default Container;

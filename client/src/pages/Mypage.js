@@ -29,7 +29,7 @@ function Mypage(props) {
         <Ul>
           <li
             onClick={() => {
-              history.push('/orderlist');
+              history.push('/purchase');
             }}
           >
             주문내역
