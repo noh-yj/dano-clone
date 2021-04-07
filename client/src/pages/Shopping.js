@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-// import Empty from '../components/Empty';
+import Empty from '../components/Empty';
 import ShoppingItem from '../components/ShoppingItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as cartActions } from '../redux/modules/cart';
 
 function Shopping(props) {
+  const dispatch = useDispatch();
   const { history } = props;
+  const products = useSelector((state) => state.cart.list);
+  const is_login = useSelector((state) => state.user.is_login);
+
+  // 새로고침시 데이터 안불러오는거 해결
+
+  useEffect(() => {
+    if (!is_login) {
+      setTimeout(() => {
+        dispatch(cartActions.getCartDB());
+      }, 150);
+    } else {
+      dispatch(cartActions.getCartDB());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const total_price = products.map((product) => {
+    return parseInt(product.price.split(',').join(''));
+  });
+  let result_price = 0;
+  total_price.forEach((val) => {
+    result_price += val;
+  });
+  const pay = result_price
+    .toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
   return (
     <>
       <Header />
@@ -21,65 +49,71 @@ function Shopping(props) {
             03 주문완료
           </CurrentPage>
         </Title>
-        {/* <Empty /> */}
-        {/* 상품이 존재할때 안할때 조건부 렌더링 */}
-        <CartContainer>
-          <Thead>
-            <tr>
-              <th>상품정보</th>
-              <th>수량</th>
-              <th>상품금액</th>
-              <th>배송비</th>
-            </tr>
-          </Thead>
-          <Tbody>
-            <ShoppingItem />
-          </Tbody>
-        </CartContainer>
+        {products.length === 0 ? (
+          <Empty />
+        ) : (
+          <>
+            <CartContainer>
+              <Thead>
+                <tr>
+                  <th>상품정보</th>
+                  <th>수량</th>
+                  <th>상품금액</th>
+                  <th>배송비</th>
+                </tr>
+              </Thead>
+              <Tbody>
+                {products.map((val, idx) => {
+                  return <ShoppingItem key={idx} {...val} />;
+                })}
+              </Tbody>
+            </CartContainer>
 
-        <PriceContainer>
-          <PriceHead>
-            <tr>
-              <th>총 상품 금액</th>
-              <th>총 할인가격</th>
-              <th>총 결제금액</th>
-            </tr>
-          </PriceHead>
-          <PriceBody>
-            <tr>
-              <td>
-                <Span>38,000</Span>원
-              </td>
-              <SailPrice>
-                <Sign>-</Sign>
-                <div>
-                  <Span>0</Span>원
-                </div>
-                <Sign>=</Sign>
-              </SailPrice>
+            <PriceContainer>
+              <PriceHead>
+                <tr>
+                  <th>총 상품 금액</th>
+                  <th>총 할인가격</th>
+                  <th>총 결제금액</th>
+                </tr>
+              </PriceHead>
+              <PriceBody>
+                <tr>
+                  <td>
+                    <Span>{pay}</Span>원
+                  </td>
+                  <SailPrice>
+                    <Sign>-</Sign>
+                    <div>
+                      <Span>0</Span>원
+                    </div>
+                    <Sign>=</Sign>
+                  </SailPrice>
 
-              <td>
-                <Span>38,000</Span>원
-              </td>
-            </tr>
-          </PriceBody>
-        </PriceContainer>
-        <Btn>
-          <ShoppingBtn
-            onClick={() => {
-              history.push('/');
-            }}
-          >
-            쇼핑하러 가기
-          </ShoppingBtn>
-          <PurchaseBtn
-            onClick={() => {
-              history.push('/purchase');
-            }}
-          >
-            구매하기
-          </PurchaseBtn>
-        </Btn>
+                  <td>
+                    <Span>{pay}</Span>원
+                  </td>
+                </tr>
+              </PriceBody>
+            </PriceContainer>
+            <Btn>
+              <ShoppingBtn
+                onClick={() => {
+                  history.push('/');
+                }}
+              >
+                쇼핑하러 가기
+              </ShoppingBtn>
+              <PurchaseBtn
+              // onClick={() => {
+
+              // }}
+              >
+                구매하기
+              </PurchaseBtn>
+            </Btn>
+          </>
+        )}
       </Container>
       <Footer />
     </>

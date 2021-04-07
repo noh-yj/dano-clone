@@ -3,70 +3,119 @@ import { produce } from 'immer';
 import axios from 'axios';
 import { config } from '../../config';
 
-const ADD_ITEM = 'ADD_ITEM'; // 액션 만듦
+const ADD_CART = 'ADD_CART';
+const GET_CART = 'GET_CART';
+const DELETE_CART = 'DELETE_CART';
+const BUY_CART = 'BUY_CART';
 
-const addItem = createAction(ADD_ITEM, (item) => ({ item })); // 액션 크리에이터
+const addCart = createAction(ADD_CART, (cart_item) => ({ cart_item }));
+const getCart = createAction(GET_CART, (cart_item) => ({ cart_item }));
+const deleteCart = createAction(DELETE_CART, (item_name) => ({ item_name }));
+const buyCart = createAction(BUY_CART, () => ({}));
 
 const initialState = {
-  cart_list: [
-    {
-      user_name: '',
-      image_url:
-        'https://danoshop.net/mall/upload/2019/03/04/brownie_hover_1.png',
-      product_name: '다노 프로틴 브라우니 1BOX (5개입)',
-      product_quantity: 2,
-      product_price: 16000,
-    },
-  ],
+  list: [],
 };
 
-// 리듀서 -> 스토어(configure store)에 저장 (완전 별개의 컴포넌트에서 컴포넌트로 데이터 옮기기 어려우니)
+const buyCartDB = (username) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'delete',
+      url: `${config.api}/api/buycart/${username}`,
+    }).then((res) => {
+      dispatch(buyCart());
+      window.alert('구매가 완료되었습니다! 😍');
+      history.push('/Purchase');
+    });
+  };
+};
+
+const deleteCartDB = (username, product_id) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'delete',
+      url: `${config.api}/api/cart/${username}/removeItem/${product_id}`,
+    })
+      .then((res) => {
+        dispatch(deleteCart(product_id));
+      })
+      .catch((e) => {
+        console.log('에러발생:', e);
+      });
+  };
+};
+
+const getCartDB = () => {
+  return function (dispatch, getState, { history }) {
+    const username = getState().user.user?.username;
+    axios({
+      method: 'get',
+      url: `${config.api}/api/cart/${username}`,
+    })
+      .then((res) => {
+        let cart_list = [...res.data];
+        dispatch(getCart(cart_list));
+      })
+      .catch((e) => {
+        console.log('에러발생:', e);
+      });
+  };
+};
+
+const addCartDB = (cart_item) => {
+  return function (dispatch, getState, { history }) {
+    axios({
+      method: 'post',
+      url: `${config.api}/api/cart`,
+      data: {
+        amount: cart_item.count,
+        img_url: cart_item.image_url,
+        price: cart_item.total_price,
+        product_name: cart_item.product_name,
+        username: cart_item.username,
+      },
+    })
+      .then((res) => {
+        dispatch(addCart({ ...cart_item }));
+        window.alert('장바구니에 추가가 완료되었습니다 :)');
+        history.push('/cart');
+      })
+      .catch((e) => {
+        console.log('에러발생:', e);
+      });
+  };
+};
+
 export default handleActions(
   {
-    [ADD_ITEM]: (
-      state,
-      action, // 두개의 파라미터(상태값, 액션)
-    ) =>
+    [ADD_CART]: (state, action) =>
       produce(state, (draft) => {
-        // state를 복사해서  draft로 만듦(=복사본) (원본은 불변(immer))
-        draft.cart_list.unshift(action.payload.cart_list);
-        // unshift 배열에서 제일 앞에 추가하기
-        // 맨 뒤면 push써도됨
-        // payload 콘솔 찍으면 payload로뜸 -> 전송되는 데이터
+        draft.list.unshift(action.payload.cart_item);
+      }),
+    [GET_CART]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = action.payload.cart_item;
+      }),
+    [DELETE_CART]: (state, action) =>
+      produce(state, (draft) => {
+        let idx = draft.list.findIndex(
+          (val) => val.id === action.payload.item_name,
+        );
+        draft.list.splice(idx, 1);
+      }),
+    [BUY_CART]: (state, action) =>
+      produce(state, (draft) => {
+        draft.list = null;
       }),
   },
-  initialState, // 기본값
+  initialState,
 );
 
-// // 데이터 불러오기 (주문 목록으로)
-// const getItemDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     const itemDB =
-//   }
-// }
-
-// // 미들웨어 -> 서버로 전달
-// const addItemDB = () => {
-//   return function (dispatch, getState, { history }) {
-//     // history.push 여기서 써줌
-//     // getState -> state에 접근한다는 뜻
-// // 여기 이해안됨
-//         axios({
-//           method: 'post',
-//           url: `${config.api}/api/user/cart`,
-//         })
-//           .then((res) => {
-//             let item_list = [...res.data];
-//             console.log('helloworld',item_list)
-//             dispatch(addItem(item_list));
-//           })
-//           .catch((e) => console.log(e));
-//       };
-//     };
-
 const actionCreators = {
-  // addItemDB, // 서버에 전달(외부)
-  addItem, // 리덕스에 데이터 전달(내부)
+  addCartDB,
+  getCartDB,
+  deleteCartDB,
+  buyCartDB,
 };
 
 export { actionCreators };

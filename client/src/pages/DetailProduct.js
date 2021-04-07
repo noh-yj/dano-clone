@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { actionCreators as productActions } from '../redux/modules/product';
 import { actionCreators as orderActions } from '../redux/modules/order';
+import { actionCreators as cartActions } from '../redux/modules/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCookie } from '../shared/Cookie';
 
@@ -34,6 +35,10 @@ function DetailProduct(props) {
     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');
 
   const order = () => {
+    if (!is_login || !cookie) {
+      window.alert('로그인 후 시도해주세요!');
+      return;
+    }
     const order_info = {
       username: user_info?.username,
       image_url: product.image_url,
@@ -43,13 +48,26 @@ function DetailProduct(props) {
       count: count,
       total_price: result_price,
     };
+
+    dispatch(orderActions.addOrder(order_info));
+    window.alert('구매가 완료되었습니다 :)');
+    history.push('/purchase');
+  };
+  const cart = () => {
     if (!is_login || !cookie) {
       window.alert('로그인 후 시도해주세요!');
       return;
     }
-    dispatch(orderActions.addOrder(order_info));
-    window.alert('구매가 완료되었습니다 :)');
-    history.push('/purchase');
+    const cart_info = {
+      username: user_info.username,
+      image_url: product.image_url,
+      product_name: product.product_name,
+      product_id: product.id,
+      price: product.price,
+      count: count,
+      total_price: result_price,
+    };
+    dispatch(cartActions.addCartDB(cart_info));
   };
 
   return (
@@ -72,7 +90,7 @@ function DetailProduct(props) {
                   <CountBox>
                     <button
                       onClick={() => {
-                        if (count < 1) {
+                        if (count < 2) {
                           return;
                         }
                         setCount(count - 1);
@@ -97,7 +115,7 @@ function DetailProduct(props) {
                   </span>
                 </TotalPrice>
                 <ButtonBox>
-                  <CartBtn>장바구니 담기</CartBtn>
+                  <CartBtn onClick={cart}>장바구니 담기</CartBtn>
                   <BuyBtn onClick={order}>바로 구매하기</BuyBtn>
                 </ButtonBox>
               </InfoBox>

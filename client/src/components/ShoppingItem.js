@@ -1,22 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { useDispatch } from 'react-redux';
+import { actionCreators as cartActions } from '../redux/modules/cart';
 function ShoppingItem(props) {
+  const dispatch = useDispatch();
+
+  const deleteItem = () => {
+    dispatch(cartActions.deleteCartDB(props.username, props.id));
+  };
   return (
     <>
       <Tr>
         <td>
           <ItemBox>
-            <img
-              src={
-                'https://danoshop.net/mall/upload/2021/03/22/n6y6niunfvmv7mdy44e8.png'
-              }
-              alt='item-img'
-            />
+            <img src={props.img_url} alt='item-img' />
 
             <TitleBox>
-              <div>다노 프로틴 브라우니 1BOX (5개입)</div>
-              <DeleteBtn>
+              <div>{props.product_name}</div>
+              <DeleteBtn onClick={deleteItem}>
                 <svg
                   width='16'
                   height='16'
@@ -39,9 +40,9 @@ function ShoppingItem(props) {
             </TitleBox>
           </ItemBox>
         </td>
-        <td>2</td>
+        <td>{props.amount}</td>
         <td>
-          <Span>19,000</Span>원
+          <Span>{props.price}</Span>원
         </td>
         <td>
           <Span>무료</Span>
