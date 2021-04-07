@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import OrderItem from '../components/OrderItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as orderActions } from '../redux/modules/order';
 
 function Order(props) {
-  const getOrder = useSelector((state) => state.order.list);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.order.list);
+  const is_login = useSelector((state) => state.user.is_login);
+
+  useEffect(() => {
+    if (!is_login) {
+      setTimeout(() => {
+        dispatch(orderActions.getOrderDB());
+      }, 150);
+    } else {
+      dispatch(orderActions.getOrderDB());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Header />
@@ -31,20 +45,17 @@ function Order(props) {
             </tr>
           </Thead>
           <Tbody>
-            {getOrder.length === 0 ? (
+            {products.length === 0 ? (
               <tr style={{ height: '51px' }}>
                 <td colSpan='5'>구매한 내역이 없습니다 :)</td>
               </tr>
             ) : (
-              getOrder.map((val, idx) => {
+              products.map((val, idx) => {
                 return <OrderItem key={idx} {...val} />;
               })
             )}
           </Tbody>
         </CartContainer>
-        <br />
-        <br />
-        <br />
       </Container>
       <Footer />
     </>
@@ -91,6 +102,7 @@ const CartContainer = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
+  margin-bottom: 120px;
 `;
 
 const Thead = styled.thead`

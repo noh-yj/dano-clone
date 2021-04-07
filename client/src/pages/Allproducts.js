@@ -20,11 +20,11 @@ function Allproducts(props) {
   return (
     <>
       <Header />
+      <Banner src='https://danoshop.net/mall/upload/2020/12/11/201125_W_category_%EB%8B%A4%EB%85%B8%EC%A0%9C%ED%92%88_1.png' />
       {loading ? (
         <Spinner />
       ) : (
         <>
-          <Banner src='https://danoshop.net/mall/upload/2020/12/11/201125_W_category_%EB%8B%A4%EB%85%B8%EC%A0%9C%ED%92%88_1.png' />
           <Container text='전체보기'>
             {products.map((val) => {
               return (

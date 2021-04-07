@@ -140,6 +140,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/products/allproducts');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   전체 보기
@@ -147,6 +148,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/danoinfo');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   다노샵 소개
@@ -154,6 +156,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/products/popularproducts');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   인기상품
@@ -161,6 +164,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/products/newproducts');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   신상품
@@ -168,6 +172,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/products/danoproducts');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   다노제품
@@ -175,6 +180,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/products/cheapproducts');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   알뜰상품
@@ -182,6 +188,7 @@ function Header(props) {
                 <li
                   onClick={() => {
                     history.push('/products/freeproducts');
+                    window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
                   무료 배송

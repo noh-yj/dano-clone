@@ -20,12 +20,12 @@ const initialState = {
 const buyCartDB = (username) => {
   return function (dispatch, getState, { history }) {
     axios({
-      method: 'delete',
-      url: `${config.api}/api/buycart/${username}`,
+      method: 'post',
+      url: `${config.api}/api/MyOrder/${username}`,
     }).then((res) => {
-      dispatch(buyCart());
       window.alert('구매가 완료되었습니다! 😍');
       history.push('/Purchase');
+      dispatch(buyCart());
     });
   };
 };

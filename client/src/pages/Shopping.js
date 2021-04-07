@@ -12,9 +12,7 @@ function Shopping(props) {
   const { history } = props;
   const products = useSelector((state) => state.cart.list);
   const is_login = useSelector((state) => state.user.is_login);
-
-  // 새로고침시 데이터 안불러오는거 해결
-
+  const user_info = useSelector((state) => state.user.user);
   useEffect(() => {
     if (!is_login) {
       setTimeout(() => {
@@ -105,9 +103,9 @@ function Shopping(props) {
                 쇼핑하러 가기
               </ShoppingBtn>
               <PurchaseBtn
-              // onClick={() => {
-
-              // }}
+                onClick={() => {
+                  dispatch(cartActions.buyCartDB(user_info.username));
+                }}
               >
                 구매하기
               </PurchaseBtn>

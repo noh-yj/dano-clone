@@ -19,8 +19,8 @@ const SpinnerImg = styled.div`
   &::after {
     content: '';
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 130px;
+    height: 130px;
     margin: 8px;
     border-radius: 50%;
     border: 4px solid #ff6f61;

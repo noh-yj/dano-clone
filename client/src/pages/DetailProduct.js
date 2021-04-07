@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCookie } from '../shared/Cookie';
 
 function DetailProduct(props) {
-  const { history } = props;
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const id = props.match.params.id;
@@ -40,7 +39,7 @@ function DetailProduct(props) {
       return;
     }
     const order_info = {
-      username: user_info?.username,
+      username: user_info.username,
       image_url: product.image_url,
       product_name: product.product_name,
       product_id: product.id,
@@ -49,9 +48,7 @@ function DetailProduct(props) {
       total_price: result_price,
     };
 
-    dispatch(orderActions.addOrder(order_info));
-    window.alert('구매가 완료되었습니다 :)');
-    history.push('/purchase');
+    dispatch(orderActions.addOrderDB(order_info));
   };
   const cart = () => {
     if (!is_login || !cookie) {
