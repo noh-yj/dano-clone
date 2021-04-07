@@ -129,7 +129,6 @@ const CartContainer = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  height: 100%;
 `;
 
 const Thead = styled.thead`

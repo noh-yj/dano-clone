@@ -23,6 +23,7 @@ import Mypage from '../pages/Mypage';
 import Userinfo from '../pages/Userinfo';
 import DetailProduct from '../pages/DetailProduct';
 import Shopping from '../pages/Shopping';
+import Order from '../pages/Order';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,8 +41,7 @@ function App() {
         <Route path='/user/login' exact component={Login} />
         <Route path='/user/signup' exact component={Signup} />
         <Route path='/cart' exact component={Shopping} />
-        <Route path='/purchase' exact component={Purchase} />
-        <Route path='/nonuserorderlist' exact component={NonUserOrderList} />
+        <Route path='/purchase' exact component={Order} />
         <Route path='/products/allproducts' exact component={Allproducts} />
         <Route path='/danoinfo' exact component={DanoInfo} />
         <Route
