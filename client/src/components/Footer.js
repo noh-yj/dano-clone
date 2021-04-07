@@ -207,7 +207,7 @@ const Bottom = styled.div`
 const Text = styled.div`
   width: 1140px;
   margin: 0 auto;
-  font-color: A1A1A1;
+  font-color: A1A1A1 !important;
   `;
 
 const Highlight = styled.div`

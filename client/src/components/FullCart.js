@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {useDispatch, useSelector} from "react-redux";
+import { applyMiddleware } from 'redux';
 
 function FullCart(props) {
     const { history } = props;
@@ -26,39 +27,44 @@ function FullCart(props) {
                     </Title>
                     <CartContainer>
                         <Thead>
-                            <tr>
-                                <td colSpan="2">상품정보</td>
-                                <td>수량</td>
-                                <td>주문금액</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <td style={{width:300}}>상품정보</td>
+                                    <td>수량</td>
+                                    <td>주문금액</td>
+                                    <td>배송비</td>
+                                </tr>
+                            </thead>
                         </Thead>
                         <Tbody>
-                            <tr>
-                                <td colSpan="2"><InfoBox>
-                                    {/* useSelector제대로 안돼서 일단 임의로 데이터 넣어둠 */}
-                                    <img src={product_info.image_url} alt='item-img' style={{width: 90, height:90, borderRadius: 8}}/>
-                                    {product_info.product_name}
-                                    &nbsp; 다노 프로틴 브라우니 1BOX (5개입) &nbsp;
-                                    <DeleteBtn>
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 1L15 15" stroke="#A1A1A1" stroke-linecap="square">
-                                        </path><path d="M15 1L1 15" stroke="#A1A1A1" stroke-linecap="square">
-                                            </path></svg>
-                                    </DeleteBtn>
-                                </InfoBox></td>
-                            </tr>
-                            <tr style={{marginLeft: 40}}>
-                                <td>
-                                <ItemQuantityBox>2</ItemQuantityBox>
+                            <tbody>
+                                <tr>
+                                    <td colSpan="2"><InfoBox>
+                                        {/* useSelector제대로 안돼서 일단 임의로 데이터 넣어둠 */}
+                                        <img src={product_info.image_url} alt='item-img' style={{width: 90, height:90, borderRadius: 8}}/>
+                                        {product_info.product_name}
+                                        &nbsp; 다노 프로틴 브라우니 1BOX (5개입) &nbsp;
+                                        <DeleteBtn>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 1L15 15" stroke="#A1A1A1" stroke-linecap="square">
+                                            </path><path d="M15 1L1 15" stroke="#A1A1A1" stroke-linecap="square">
+                                                </path></svg>
+                                        </DeleteBtn>
+                                    </InfoBox></td>
+                                {/* <tr style={{marginLeft: 40}}> */}
+                                    <td>
+                                    <ItemQuantityBox>2</ItemQuantityBox>
 
-                                    {/* <ItemQuantityBox>{product_info.product_quantity}</ItemQuantityBox> */}
-                                </td>
-                            </tr>
-                            <tr style={{marginLeft: 170}}>
-                                <td>
-                                <ItemPrice>19000*2</ItemPrice></td></tr>
+                                        {/* <ItemQuantityBox>{product_info.product_quantity}</ItemQuantityBox> */}
+                                    </td>
+                                {/* <tr style={{marginLeft: 170}}> */}
+                                    <td>
+                                    <ItemPrice>19000*2</ItemPrice></td>
 
-                                {/* <ItemPrice>{product_info.product_price}*{product_info.product_quantity}</ItemPrice></td></tr> */}
+                                    {/* <ItemPrice>{product_info.product_price}*{product_info.product_quantity}</ItemPrice></td></tr> */}
+                                    <td>무료</td>
+                                </tr>
+                            </tbody>
                         </Tbody>
                             
                     </CartContainer>
@@ -147,7 +153,7 @@ const Thead = styled.div`
     background: rgb(248, 248, 248);
     border-top: 2px solid rgb(51, 51, 51);
     font-weight: bold;
-    // width: 700px;
+    width: 700px;
     height: 50px;
     display: table;
     text-align: center;
@@ -179,6 +185,7 @@ const PriceHead = styled.div`
     height: 50px;
     display: table;
     text-align: center;
+    vertical-align: middle;
 
 `;
 const PriceBody = styled.div`
@@ -186,8 +193,10 @@ const PriceBody = styled.div`
     width: 700px;
     display: table;
     // border-collapse: collapse;
-    border: 1px solid rgb(236, 236, 236);
-`;
+    border-bottom: 1px solid rgb(236, 236, 236);
+    border-top: 1px solid rgb(236, 236, 236);
+    vertical-align: middle;
+    `;
 const InfoBox = styled.div`
     // width: 50px;
     text-align: center;
@@ -216,7 +225,8 @@ const Title = styled.div`
 const Tbody = styled.div`
     width: 700px;
     display: flex;
-    border: 1px solid rgb(236, 236, 236);
+    border-bottom: 1px solid rgb(236, 236, 236);
+    border-top: 1px solid rgb(236, 236, 236);
 `;
 const Btn = styled.div`
     margin: 50px 90px;
