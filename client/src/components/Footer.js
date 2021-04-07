@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 
 const Footer = () => {
   return (
@@ -36,8 +35,8 @@ const Footer = () => {
                 stroke='currentColor'
               ></path>
               <path
-                fill-rule='evenodd'
-                clip-rule='evenodd'
+                fillRule='evenodd'
+                clipRule='evenodd'
                 d='M13.7431 19.002C13.7431 19.8437 13.0599 20.5269 12.2181 20.5269C11.3764 20.5269 10.6932 19.8437 10.6932 19.002C10.6932 18.1602 11.3764 17.477 12.2181 17.477C13.0599 17.477 13.7431 18.1602 13.7431 19.002Z'
                 stroke='currentColor'
               ></path>
@@ -138,7 +137,6 @@ const Footer = () => {
 };
 
 const Container = styled.div`
-  //   max-width: 100%;
   max-height: 100%;
   margin: 0 auto;
   cursor: default;
@@ -204,9 +202,7 @@ const Email = styled.div`
 const Atag = styled.div`
   color: #a1a1a1;
   font-size: 12px;
-  // margin: 0 11px 0 5px;
   cursor: pointer;
-  // line-height: 40px;
   text-decoration: none;
   &:hover {
     text-decoration: none;
