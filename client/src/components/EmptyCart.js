@@ -1,13 +1,12 @@
 // empty
 import React from 'react';
 import styled from "styled-components";
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Header from './Header';
+import Footer from './Footer';
 
-const ShoppingBag = (props) => {
+const EmptyCart = (props) => {
     const { history } = props;
     return (
-        // <React.Fragment>
         <React.Fragment>
             <Header/>
             <Container>
@@ -100,4 +99,4 @@ const ShoppingBag = (props) => {
         font-size: 14px;
     `;
 
-export default ShoppingBag;
+export default EmptyCart;

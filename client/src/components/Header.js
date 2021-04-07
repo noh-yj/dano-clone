@@ -59,14 +59,14 @@ function Header(props) {
               </HeaderLi>
               <HeaderLi
                 onClick={() => {
-                  history.push('/orderlist');
+                  history.push('/purchase');
                 }}
               >
                 주문내역
               </HeaderLi>
               <HeaderLi
                 onClick={() => {
-                  history.push('/shoppingbag');
+                  history.push('/cart');
                 }}
               >
                 장바구니
@@ -260,14 +260,14 @@ function Header(props) {
             </HeaderLi>
             <HeaderLi
               onClick={() => {
-                history.push('/orderlist');
+                history.push('/purchase');
               }}
             >
               주문내역
             </HeaderLi>
             <HeaderLi
               onClick={() => {
-                history.push('/shoppingbag');
+                history.push('/cart');
               }}
             >
               장바구니
