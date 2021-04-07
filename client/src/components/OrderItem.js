@@ -22,7 +22,7 @@ function OrderItem(props) {
           </td>
           <td>2</td>
           <td>
-            <Span>19,000</Span>원
+            <Span>38,000</Span>원
           </td>
           <td>
             <Span>무료</Span>
