@@ -11,8 +11,8 @@ function Spinner() {
 
 const SpinnerImg = styled.div`
   display: inline-block;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -23,7 +23,7 @@ const SpinnerImg = styled.div`
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #ff6f61;
+    border: 4px solid #ff6f61;
     border-color: #ff6f61 transparent #ff6f61 transparent;
     animation: Spinner 1.2s linear infinite;
   }
