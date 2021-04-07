@@ -27,12 +27,12 @@ function ShoppingItem(props) {
                   <path
                     d='M1 1L15 15'
                     stroke='#A1A1A1'
-                    stroke-linecap='square'
+                    strokeLinecap='square'
                   ></path>
                   <path
                     d='M15 1L1 15'
                     stroke='#A1A1A1'
-                    stroke-linecap='square'
+                    strokeLinecap='square'
                   ></path>
                 </svg>
               </DeleteBtn>

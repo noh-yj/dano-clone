@@ -5,6 +5,17 @@ import Footer from '../components/Footer';
 import { actionCreators as productActions } from '../redux/modules/product';
 import { useDispatch, useSelector } from 'react-redux';
 
+// 컴포넌트와 리덕스 연결
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => { // 프롭스의 형태로 컴포넌트에 넣어줌
+  return {}
+}
+
+const mapDispatchToProps = () => { // 
+
+}
+
 function DetailProduct(props) {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);

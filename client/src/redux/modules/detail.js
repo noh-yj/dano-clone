@@ -3,10 +3,18 @@ import { produce } from 'immer';
 import axios from 'axios';
 import { config } from '../../config';
 
-const ADD_ITEM = 'ADD_ITEM'; // 액션 만듦
+const ADD_CART = 'ADD_CART'; // 액션 만듦
 
-const addItem = createAction(ADD_ITEM, (item) => ({ item })); // 액션 크리에이터
+// const addCart = createAction(ADD_CART, (item) => ({ item })); // 액션 생성 함수
 
+export const addCart = (items) => { // 액션객체 리턴
+    return {
+        type: "ADD_ITEM",
+        payload: item, // 전송되는 데이터: item
+    };
+};
+
+// initial state
 const initialState = {
   cart_list: [
     {
@@ -20,23 +28,31 @@ const initialState = {
   ],
 };
 
+// 리듀서
+const cartReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) { // 
+        case "ADD_ITEM":
+            return [...state, action.payload] // 스프레드문법: 중괄호 빼고 리스트에 넣어줌, 불변성 위해 ...state?
+    }
+}
+
 // 리듀서 -> 스토어(configure store)에 저장 (완전 별개의 컴포넌트에서 컴포넌트로 데이터 옮기기 어려우니)
-export default handleActions(
-  {
-    [ADD_ITEM]: (
-      state,
-      action, // 두개의 파라미터(상태값, 액션)
-    ) =>
-      produce(state, (draft) => {
-        // state를 복사해서  draft로 만듦(=복사본) (원본은 불변(immer))
-        draft.cart_list.unshift(action.payload.cart_list);
+// export default handleActions(
+//   {
+//     [ADD_ITEM]: (
+//       state,
+//       action, // 두개의 파라미터(상태값, 액션)
+//     ) =>
+//       produce(state, (draft) => {
+//         // state를 복사해서  draft로 만듦(=복사본) (원본은 불변(immer))
+//         draft.cart_list.unshift(action.payload.cart_list);
         // unshift 배열에서 제일 앞에 추가하기
         // 맨 뒤면 push써도됨
         // payload 콘솔 찍으면 payload로뜸 -> 전송되는 데이터
-      }),
-  },
-  initialState, // 기본값
-);
+//       }),
+//   },
+//   initialState, // 기본값
+// );
 
 // // 데이터 불러오기 (주문 목록으로)
 // const getItemDB = () => {
