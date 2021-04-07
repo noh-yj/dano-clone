@@ -9,8 +9,6 @@ import { actionCreators as userActions } from '../redux/modules/user';
 import Main from '../pages/Main';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
-import Purchase from '../pages/Purchase';
-import NonUserOrderList from '../pages/NonUserOrderList';
 import Allproducts from '../pages/Allproducts';
 import DanoInfo from '../pages/DanoInfo';
 import Popularproducts from '../pages/Popularproducts';

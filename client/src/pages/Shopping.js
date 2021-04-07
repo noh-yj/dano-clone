@@ -74,7 +74,7 @@ function Shopping(props) {
           </ShoppingBtn>
           <PurchaseBtn
             onClick={() => {
-              history.push('/OrderList');
+              history.push('/purchase');
             }}
           >
             구매하기

@@ -29,7 +29,7 @@ function Order(props) {
             </tr>
           </Thead>
           <Tbody>
-            {/* <tr>
+            {/* <tr style={{ height: '51px' }}>
               <td colSpan='5'>구매한 내역이 없습니다 :)</td>
             </tr> */}
             {/* 상품이 존재할때 안할때 조건부 렌더링 */}
