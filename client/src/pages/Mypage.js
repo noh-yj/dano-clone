@@ -5,6 +5,8 @@ import Footer from '../components/Footer';
 import { useSelector } from 'react-redux';
 import { getCookie } from '../shared/Cookie';
 
+// 마이 페이지
+
 function Mypage(props) {
   const cookie = getCookie('is_login') ? true : false;
   useEffect(() => {

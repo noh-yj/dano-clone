@@ -6,7 +6,7 @@ import {
   CarouselControl,
   CarouselIndicators,
 } from 'reactstrap';
-
+// 캐러셀 부트스트랩 사용
 const items = [
   {
     src: 'https://danoshop.net/mall/upload/2021/04/01/0331_WRB_mat.png',

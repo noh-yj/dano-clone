@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
 import { emailCheck, idCheck, phone_numCheck } from '../shared/common';
 
+// 회원가입 페이지
+
 function Signup(props) {
   const dispatch = useDispatch();
   const [user_id, SetUserId] = useState('');

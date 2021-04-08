@@ -8,6 +8,8 @@ import Spinner from '../shared/Spinner';
 import { actionCreators as productActions } from '../redux/modules/product';
 import { useDispatch, useSelector } from 'react-redux';
 
+// 전체 보기 페이지
+
 function Allproducts(props) {
   const { history } = props;
   const dispatch = useDispatch();

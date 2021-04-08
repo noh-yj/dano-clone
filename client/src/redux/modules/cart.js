@@ -16,7 +16,7 @@ const buyCart = createAction(BUY_CART, () => ({}));
 const initialState = {
   list: [],
 };
-
+// 장바구니에서 구매하기
 const buyCartDB = (username) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -29,7 +29,7 @@ const buyCartDB = (username) => {
     });
   };
 };
-
+// 장바구니 제품 삭제
 const deleteCartDB = (username, product_id) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -44,7 +44,7 @@ const deleteCartDB = (username, product_id) => {
       });
   };
 };
-
+// 장바구니 제품 조회
 const getCartDB = () => {
   return function (dispatch, getState, { history }) {
     const username = getState().user.user?.username;
@@ -61,7 +61,7 @@ const getCartDB = () => {
       });
   };
 };
-
+// 장바구니에 추가하기
 const addCartDB = (cart_item) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -105,7 +105,7 @@ export default handleActions(
       }),
     [BUY_CART]: (state, action) =>
       produce(state, (draft) => {
-        draft.list = null;
+        draft.list = [];
       }),
   },
   initialState,

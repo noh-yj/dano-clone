@@ -14,7 +14,7 @@ const initialState = {
   is_loading: false,
 };
 
-
+// 크롤링한 상품 조회
 const getItemDB = () => {
   return function (dispatch, getState, { history }) {
     dispatch(loading(true));
@@ -29,6 +29,8 @@ const getItemDB = () => {
       .catch((e) => console.log(e));
   };
 };
+
+// 디테일 페이지 상품 조회(리렌더링시 에러 방지)
 const getItemOneDB = (id) => {
   return function (dispatch, getState, { history }) {
     axios({

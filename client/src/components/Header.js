@@ -25,7 +25,7 @@ function Header(props) {
                   다노 소개
                 </Atag>
                 &nbsp;&nbsp;
-                <strong style={{ color: 'rgb(239, 239, 239)' }}>|</strong>
+                <strong>|</strong>
               </Span>
               <Atag
                 href='https://mydano.net/?utm_source=danoshop&utm_medium=referral&utm_campaign=danoshop'
@@ -241,7 +241,7 @@ function Header(props) {
                 다노 소개
               </Atag>
               &nbsp;&nbsp;
-              <strong style={{ color: 'rgb(239, 239, 239)' }}>|</strong>
+              <strong>|</strong>
             </Span>
             <Atag
               href='https://mydano.net/?utm_source=danoshop&utm_medium=referral&utm_campaign=danoshop'
@@ -451,6 +451,9 @@ const Span = styled.span`
   margin: 0 11px 0 5px;
   cursor: pointer;
   line-height: 40px;
+  & strong {
+    color: rgb(239, 239, 239);
+  }
 `;
 const Atag = styled.a`
   color: #a1a1a1;

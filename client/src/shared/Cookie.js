@@ -1,3 +1,5 @@
+// 쿠기 값 저장, 삭제, 조회
+
 const setCookie = (name, value, exp = 5) => {
   let date = new Date();
   date.setTime(date.getTime() + exp * 1000 * 60 * 60 * 24);

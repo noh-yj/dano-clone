@@ -3,6 +3,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import styled from 'styled-components';
 
+// 준비중 페이지 시간 내 구현 못한 페이지들 처리
+
 function Prepare(props) {
   return (
     <Container>

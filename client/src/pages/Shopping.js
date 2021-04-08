@@ -7,6 +7,8 @@ import ShoppingItem from '../components/ShoppingItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as cartActions } from '../redux/modules/cart';
 
+// 장바구니 페이지
+
 function Shopping(props) {
   const dispatch = useDispatch();
   const { history } = props;

@@ -8,6 +8,8 @@ import Spinner from '../shared/Spinner';
 import { actionCreators as productActions } from '../redux/modules/product';
 import { useDispatch, useSelector } from 'react-redux';
 
+// 다노제품 페이지
+
 function Danoproducts(props) {
   const { history } = props;
   const dispatch = useDispatch();

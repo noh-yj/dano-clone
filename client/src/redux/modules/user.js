@@ -39,6 +39,7 @@ const deleteUserDB = (username) => {
 const getUserDB = () => {
   return function (dispatch, getState, { history }) {
     const jwtToken = getCookie('is_login');
+    axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
     axios({
       method: 'post',
       url: `${config.api}/api/getUser`,
@@ -108,6 +109,7 @@ const LoginDB = (user_id, password) => {
       .then((res) => {
         const jwtToken = res.data.message1.jwt;
         setCookie('is_login', jwtToken);
+        axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
         dispatch(
           setUser({
             username: user_id,

@@ -57,9 +57,9 @@ const Footer = () => {
             <Title> 다노샵 </Title>
             <Contents>
               <Highlight>채팅 상담하기</Highlight>
-              <hr style={{ width: 200 }} />
+              <hr />
               문의 글 남기기
-              <hr style={{ width: 200 }} />
+              <hr />
               전화 문의하기 (02-2135-1885)
             </Contents>
           </FirstBlock>
@@ -69,7 +69,7 @@ const Footer = () => {
           <Contents>
             {' '}
             <Highlight>채팅 상담하기</Highlight>
-            <hr style={{ width: 200 }} />
+            <hr />
             문의 글 남기기{' '}
           </Contents>
         </SecondBlock>

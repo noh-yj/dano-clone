@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
 import styled from 'styled-components';
 
+// 로그인 페이지
+
 function Login(props) {
   const { history } = props;
   const dispatch = useDispatch();

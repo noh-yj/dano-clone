@@ -12,7 +12,7 @@ const getOrder = createAction(GET_ORDER, (order_item) => ({ order_item }));
 const initialState = {
   list: [],
 };
-
+// 구매 내역 조회
 const getOrderDB = () => {
   return function (dispatch, getState, { history }) {
     const username = getState().user.user?.username;
@@ -29,7 +29,7 @@ const getOrderDB = () => {
       });
   };
 };
-
+// 제품 구매하기
 const addOrderDB = (order_item) => {
   return function (dispatch, getState, { history }) {
     axios({

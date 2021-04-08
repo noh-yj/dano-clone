@@ -15,7 +15,7 @@ const SpinnerImg = styled.div`
   height: 100px;
   position: fixed;
   top: 50%;
-  left: 50%;
+  left: 46%;
   &::after {
     content: '';
     display: block;

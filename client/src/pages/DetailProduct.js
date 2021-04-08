@@ -8,6 +8,8 @@ import { actionCreators as cartActions } from '../redux/modules/cart';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCookie } from '../shared/Cookie';
 
+// 상세 제품 페이지
+
 function DetailProduct(props) {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);

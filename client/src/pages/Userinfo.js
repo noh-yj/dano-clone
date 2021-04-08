@@ -8,6 +8,8 @@ import { getCookie } from '../shared/Cookie';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as userActions } from '../redux/modules/user';
 
+// 회원 정보수정 페이지
+
 function Userinfo(props) {
   const { history } = props;
   const cookie = getCookie('is_login') ? true : false;

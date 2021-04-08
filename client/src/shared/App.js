@@ -26,6 +26,7 @@ import Order from '../pages/Order';
 function App() {
   const dispatch = useDispatch();
   const cookie = getCookie('is_login') ? true : false;
+  // 쿠키 존재할때 리렌더링 시 회원정보 조회
   useEffect(() => {
     if (cookie) {
       dispatch(userActions.getUserDB());

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+// 다노샵 소개 페이지
+
 function DanoInfo() {
   return (
     <>

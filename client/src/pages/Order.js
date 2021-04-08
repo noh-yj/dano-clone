@@ -6,6 +6,8 @@ import OrderItem from '../components/OrderItem';
 import { useSelector, useDispatch } from 'react-redux';
 import { actionCreators as orderActions } from '../redux/modules/order';
 
+// 주문 내역 페이지
+
 function Order(props) {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.order.list);
