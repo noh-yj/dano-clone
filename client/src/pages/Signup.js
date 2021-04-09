@@ -16,6 +16,7 @@ function Signup(props) {
   const [phone_num, setPhoneNum] = useState('');
 
   const signup = () => {
+    // 유효성 검증
     if (
       user_id === '' ||
       password === '' ||

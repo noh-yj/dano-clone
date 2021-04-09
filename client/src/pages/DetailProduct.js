@@ -31,6 +31,7 @@ function DetailProduct(props) {
   const price_won = product?.price.slice(0, -1).split(',').join('');
   const price_num = parseInt(price_won);
   const total_price = price_num * count;
+  // 돈 단위 표시 정규식 ex) 1000 => 1,000 이렇게 하기 위함
   const result_price = total_price
     .toString()
     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');

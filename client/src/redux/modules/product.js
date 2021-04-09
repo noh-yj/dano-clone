@@ -3,20 +3,26 @@ import { produce } from 'immer';
 import axios from 'axios';
 import { config } from '../../config';
 
+// 액션
 const GET_ITEMS = 'GET_ITEMS';
 const LOADING = 'LOADING';
 
+// 액션 생성함수
 const getItems = createAction(GET_ITEMS, (item_list) => ({ item_list }));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
+// 초기 state값
 const initialState = {
   list: [],
   is_loading: false,
 };
+// 미들웨어
 
 // 크롤링한 상품 조회
+// 메인페이지 및 카테고리별 페이지에서 조회
 const getItemDB = () => {
   return function (dispatch, getState, { history }) {
+    // 데이터 로딩시 스피너를 보여주기 위한 처리
     dispatch(loading(true));
     axios({
       method: 'get',
@@ -37,6 +43,7 @@ const getItemOneDB = (id) => {
       method: 'get',
       url: `${config.api}/api/product`,
     }).then((res) => {
+      // 전체 리스트 중 특정 제품 하나 필터처리
       const item = res.data.filter((val) => {
         return val.id === parseInt(id);
       });
@@ -45,11 +52,14 @@ const getItemOneDB = (id) => {
   };
 };
 
+// 리듀서
+// redux-actions와 immer를 사용
 export default handleActions(
   {
     [GET_ITEMS]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.item_list;
+        // 통신이 완료되면 스피너 대신 리스트 보기 위해 loading: false
         draft.is_loading = false;
       }),
     [LOADING]: (state, action) =>

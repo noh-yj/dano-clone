@@ -8,7 +8,7 @@ import cart from './modules/cart';
 import order from './modules/order';
 
 export const history = createBrowserHistory();
-
+// 리듀서 합치기
 const rootReducer = combineReducers({
   user: user,
   product: product,
@@ -33,6 +33,8 @@ const composeEnhancers =
     : compose;
 
 const enhancer = composeEnhancers(applyMiddleware(...middlewares));
+
+// 스토어 생성
 let store = (initialStore) => createStore(rootReducer, enhancer);
 
 export default store();

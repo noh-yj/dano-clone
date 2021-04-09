@@ -1,4 +1,4 @@
-// 쿠기 값 저장, 삭제, 조회
+// 쿠기에 값을 저장, 삭제, 조회
 
 const setCookie = (name, value, exp = 5) => {
   let date = new Date();

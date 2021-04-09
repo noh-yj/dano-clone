@@ -3,16 +3,22 @@ import produce from 'immer';
 import axios from 'axios';
 import { config } from '../../config';
 
+// 액션
 const ADD_ORDER = 'ADD_ORDER';
 const GET_ORDER = 'GET_ORDER';
 
+// 액션생성함수
 const addOrder = createAction(ADD_ORDER, (order_item) => ({ order_item }));
 const getOrder = createAction(GET_ORDER, (order_item) => ({ order_item }));
 
+// 초기 state
 const initialState = {
   list: [],
 };
+// 미들웨어
+
 // 구매 내역 조회
+// 유저가 장바구니나 디테일페이지에서 구매버튼을 클릭한 데이터를 전부 조회
 const getOrderDB = () => {
   return function (dispatch, getState, { history }) {
     const username = getState().user.user?.username;
@@ -29,7 +35,10 @@ const getOrderDB = () => {
       });
   };
 };
+
 // 제품 구매하기
+// 디테일페이지에서 제품 구매하기 버튼을 클릭시 구매내역에 추가
+// 보내는 데이터: 갯수, 이미지url, 총가격(원가*갯수), 제품명, 유저id
 const addOrderDB = (order_item) => {
   return function (dispatch, getState, { history }) {
     axios({
@@ -54,10 +63,13 @@ const addOrderDB = (order_item) => {
   };
 };
 
+// 리듀서
+// redux-actions와 immer를 사용
 export default handleActions(
   {
     [ADD_ORDER]: (state, action) =>
       produce(state, (draft) => {
+        // 최신순으로 추가되게 unshift를 사용
         draft.list.unshift(action.payload.order_item);
       }),
     [GET_ORDER]: (state, action) =>

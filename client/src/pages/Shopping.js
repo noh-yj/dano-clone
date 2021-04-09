@@ -32,6 +32,7 @@ function Shopping(props) {
   total_price.forEach((val) => {
     result_price += val;
   });
+  // 돈 단위 표시 정규식 ex) 1000 => 1,000 이렇게 하기 위함
   const pay = result_price
     .toString()
     .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',');

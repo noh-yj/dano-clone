@@ -15,6 +15,7 @@ function Userinfo(props) {
   const cookie = getCookie('is_login') ? true : false;
   useEffect(() => {
     if (!cookie) {
+      // 쿠키에 토큰 없으면 접근 차단
       window.alert('잘못된 접근입니다!');
       history.replace('/');
     }
@@ -29,12 +30,14 @@ function Userinfo(props) {
   const [phone_num, setPhoneNum] = useState(user?.phone);
   const [deleteModal, setDeleteModal] = useState(false);
 
+  // 회원 탈퇴 모달창
   const OpenModal = () => {
     setDeleteModal(true);
   };
   const CloseModal = () => {
     setDeleteModal(false);
   };
+  // 유효성 검증
   let confirm = true;
   if (
     password === '' ||

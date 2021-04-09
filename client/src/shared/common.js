@@ -1,4 +1,4 @@
-// 회원가입, 회원정보 수정 정규식
+// 정규식 이메일체크, 아이디 체크, 핸드폰번호 체크
 
 export const emailCheck = (email) => {
   let _reg = /^[0-9a-zA-Z]([-_.0-9a-zA-Z])*@[0-9a-zA-Z]([-_.0-9a-zA-Z])*.([a-zA-Z])*/;
