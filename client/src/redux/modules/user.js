@@ -45,7 +45,7 @@ const getUserDB = () => {
   return function (dispatch, getState, { history }) {
     // 토큰 값 조회
     const jwtToken = getCookie('is_login');
-    // 헤더에 토큰을 담아줌
+    // 새로고침 하면 헤더 default 날라가므로 다시 헤더에 토큰을 담아줌
     axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
     axios({
       method: 'post',
