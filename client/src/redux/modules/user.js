@@ -5,14 +5,12 @@ import axios from 'axios';
 import { config } from '../../config';
 
 // 액션
-const SET_USER = 'SET_USER';
 const GET_USER = 'GET_USER';
 const UPDATE_USER = 'UPDATE_USER';
 const DELETE_USER = 'DELETE_USER';
 const LOG_OUT = 'LOG_OUT';
 
 // 액션 생성함수
-const setUser = createAction(SET_USER, (user) => ({ user }));
 const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 const updateUser = createAction(UPDATE_USER, (user) => ({ user }));
@@ -26,11 +24,11 @@ const initialState = {
 
 // 회원 탈퇴
 // 유저 id를 전송해 DB에 회원 정보를 삭제
-const deleteUserDB = (username) => {
+const deleteUserDB = () => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'delete',
-      url: `${config.api}/api/unregister/${username}`,
+      url: `${config.api}/api/user`,
     }).then((res) => {
       dispatch(deleteUser());
       window.alert('회원탈퇴가 완료되었습니다..😭');
@@ -46,20 +44,17 @@ const getUserDB = () => {
     // 토큰 값 조회
     const jwtToken = getCookie('is_login');
     // 새로고침 하면 헤더 default 날라가므로 다시 헤더에 토큰을 담아줌
-    axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
     axios({
-      method: 'post',
-      url: `${config.api}/api/getUser`,
-      data: {
-        token: jwtToken,
-      },
+      method: 'get',
+      url: `${config.api}/api/user`,
     })
       .then((res) => {
         // 받은 유저 정보 저장
         dispatch(
           getUser({
-            username: res.data.username,
-            name: res.data.name,
+            username: res.data.userName,
+            name: res.data.nickName,
             email: res.data.email,
             phone: res.data.phone,
           }),
@@ -73,27 +68,25 @@ const getUserDB = () => {
 
 // 회원 정보 수정
 // 변경할 데이터를 서버에 보내줌
-const updateUserDB = (username, password, email, phone) => {
+const updateUserDB = (password, email, phone) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'put',
-      url: `${config.api}/api/userEdit`,
+      url: `${config.api}/api/user`,
       data: {
-        username: username,
         password: password,
         email: email,
         phone: phone,
       },
     })
       .then((res) => {
-        const name = getState().user.user.name;
         // 스토어에서도 최신 데이터로 변경
         dispatch(
           updateUser({
-            username: username,
-            name: name,
-            email: email,
-            phone: phone,
+            username: res.data.userName,
+            name: res.data.nickName,
+            email: res.data.email,
+            phone: res.data.phone,
           }),
         );
         window.alert('회원정보가 변경되었습니다!');
@@ -111,30 +104,24 @@ const LoginDB = (user_id, password) => {
     // 로그인 시 id password를 서버에 보내줌
     axios({
       method: 'post',
-      url: `${config.api}/api/login`,
+      url: `${config.api}/api/user/login`,
       data: {
-        username: user_id,
+        userName: user_id,
         password: password,
       },
     })
       .then((res) => {
-        const jwtToken = res.data.message1.jwt;
+        const jwtToken = res.data;
         // 받은 토큰을 쿠키에 저장
         setCookie('is_login', jwtToken);
         // 통신 시 헤더에 default로 저장
-        axios.defaults.headers.common['Authorization'] = `${jwtToken}`;
-        // 로그인 후 서버에서 받은 회원 정보를 스토어에 최신화
-        dispatch(
-          setUser({
-            username: user_id,
-            name: res.data.message2.name,
-            email: res.data.message2.email,
-            phone: res.data.message2.phone,
-          }),
-        );
+        axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+        // 로그인 후 회원 정보를 스토어에 최신화
+        dispatch(getUserDB());
         history.push('/');
       })
       .catch((e) => {
+        window.alert(e.response.data);
         console.log('에러발생:', e);
       });
   };
@@ -145,11 +132,11 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
     // 회원 가입 시 작성한 유저 정보를 서버에 보내줌
     axios({
       method: 'post',
-      url: `${config.api}/user/signup`,
+      url: `${config.api}/api/user/signup`,
       data: {
-        username: user_id,
+        userName: user_id,
         password: password,
-        name: user_name,
+        nickName: user_name,
         email: user_email,
         phone: phone_num,
       },
@@ -159,6 +146,7 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
         history.push('/user/login');
       })
       .catch((e) => {
+        window.alert(e.response.data);
         console.log('에러 발생:', e);
       });
   };
@@ -170,12 +158,6 @@ const SignupDB = (user_id, password, user_name, user_email, phone_num) => {
 // 비슷한 코드라 2개에 액션으로 처리해도 되지만 logger에서 액션 타입만 보고 이해할 수 있게 나눔
 export default handleActions(
   {
-    [SET_USER]: (state, action) =>
-      produce(state, (draft) => {
-        // 로그인시 받은 회원정보
-        draft.user = action.payload.user;
-        draft.is_login = true;
-      }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         // 로그 아웃 시 쿠키에 담긴 토큰 삭제, 회원정보 비워줌, 로그인 여부 false

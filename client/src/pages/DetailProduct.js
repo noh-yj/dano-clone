@@ -14,10 +14,11 @@ function DetailProduct(props) {
   const dispatch = useDispatch();
   const [count, setCount] = useState(1);
   const id = props.match.params.id;
-  const user_info = useSelector((state) => state.user.user);
   const is_login = useSelector((state) => state.user.is_login);
   const products = useSelector((state) => state.product.list);
-  const product_idx = products.findIndex((val) => val.id === parseInt(id));
+  const product_idx = products.findIndex(
+    (val) => val.productId === parseInt(id),
+  );
   const product = products[product_idx];
   const cookie = getCookie('is_login') ? true : false;
   useEffect(() => {
@@ -42,13 +43,8 @@ function DetailProduct(props) {
       return;
     }
     const order_info = {
-      username: user_info.username,
-      image_url: product.image_url,
-      product_name: product.product_name,
-      product_id: product.id,
-      price: product.price,
-      count: count,
-      total_price: result_price,
+      product_id: product.productId,
+      amount: count,
     };
 
     dispatch(orderActions.addOrderDB(order_info));
@@ -59,13 +55,8 @@ function DetailProduct(props) {
       return;
     }
     const cart_info = {
-      username: user_info.username,
-      image_url: product.image_url,
-      product_name: product.product_name,
-      product_id: product.id,
-      price: product.price,
+      product_id: product.productId,
       count: count,
-      total_price: result_price,
     };
     dispatch(cartActions.addCartDB(cart_info));
   };
@@ -77,11 +68,11 @@ function DetailProduct(props) {
         <Container>
           <ItemBox>
             <ImgBox>
-              <img src={product.image_url} alt='상품이미지' />
+              <img src={product.imageUrl} alt='상품이미지' />
             </ImgBox>
             <ItemInfoBox>
               <InfoBox>
-                <p>{product.product_name}</p>
+                <p>{product.title}</p>
                 <PriceBox>
                   <span>
                     {price.slice(0, -1)}

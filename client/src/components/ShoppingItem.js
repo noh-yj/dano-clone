@@ -6,17 +6,17 @@ function ShoppingItem(props) {
   const dispatch = useDispatch();
 
   const deleteItem = () => {
-    dispatch(cartActions.deleteCartDB(props.username, props.id));
+    dispatch(cartActions.deleteCartDB(props.cartId));
   };
   return (
     <>
       <Tr>
         <td>
           <ItemBox>
-            <img src={props.img_url} alt='item-img' />
+            <img src={props.imageUrl} alt='item-img' />
 
             <TitleBox>
-              <div>{props.product_name}</div>
+              <div>{props.title}</div>
               <DeleteBtn onClick={deleteItem}>
                 <svg
                   width='16'
@@ -42,7 +42,7 @@ function ShoppingItem(props) {
         </td>
         <td>{props.amount}</td>
         <td>
-          <Span>{props.price}</Span>원
+          <Span>{props.price}</Span>
         </td>
         <td>
           <Span>무료</Span>

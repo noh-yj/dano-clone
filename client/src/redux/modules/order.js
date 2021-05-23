@@ -21,14 +21,19 @@ const initialState = {
 // 유저가 장바구니나 디테일페이지에서 구매버튼을 클릭한 데이터를 전부 조회
 const getOrderDB = () => {
   return function (dispatch, getState, { history }) {
-    const username = getState().user.user?.username;
+    if (!getState().user.user) {
+      dispatch(getOrder([]));
+      return;
+    }
     axios({
       method: 'get',
-      url: `${config.api}/api/MyOrder/${username}`,
+      url: `${config.api}/api/order`,
     })
       .then((res) => {
         let order_list = [...res.data];
-        dispatch(getOrder(order_list));
+        getState.user?.user() === null
+          ? dispatch(getOrder([]))
+          : dispatch(getOrder(order_list));
       })
       .catch((e) => {
         console.log('에러발생:', e);
@@ -38,18 +43,15 @@ const getOrderDB = () => {
 
 // 제품 구매하기
 // 디테일페이지에서 제품 구매하기 버튼을 클릭시 구매내역에 추가
-// 보내는 데이터: 갯수, 이미지url, 총가격(원가*갯수), 제품명, 유저id
+// 보내는 데이터: 갯수, 제품id
 const addOrderDB = (order_item) => {
   return function (dispatch, getState, { history }) {
     axios({
       method: 'post',
-      url: `${config.api}/api/DirectOrder/${order_item.username}`,
+      url: `${config.api}/api/order`,
       data: {
-        amount: order_item.count,
-        img_url: order_item.image_url,
-        price: order_item.total_price,
-        product_name: order_item.product_name,
-        username: order_item.username,
+        amount: order_item.amount,
+        productId: order_item.product_id,
       },
     })
       .then((res) => {

@@ -13,17 +13,16 @@ import { useDispatch, useSelector } from 'react-redux';
 function Popularproducts(props) {
   const { history } = props;
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.list);
+  const products = useSelector((state) => state.product.best_list);
   const loading = useSelector((state) => state.product.is_loading);
 
   useEffect(() => {
-    dispatch(productActions.getItemDB());
+    if (products.length === 0) {
+      dispatch(productActions.getBestDB());
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const popularProducts = products.filter((val) => {
-    return val.trending === true;
-  });
 
   return (
     <>
@@ -33,16 +32,16 @@ function Popularproducts(props) {
         <Spinner />
       ) : (
         <Container text='인기상품'>
-          {popularProducts.map((val) => {
+          {products.map((val) => {
             return (
               <div
-                key={val.id}
+                key={val.productId}
                 onClick={() => {
-                  history.push(`/detail/product/${val.id}`);
+                  history.push(`/detail/product/${val.productId}`);
                   window.scrollTo({ top: 0, left: 0 });
                 }}
               >
-                <Item key={val.id} {...val} />
+                <Item key={val.productId} {...val} />
               </div>
             );
           })}

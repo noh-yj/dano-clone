@@ -13,17 +13,16 @@ import { useDispatch, useSelector } from 'react-redux';
 function Newproducts(props) {
   const { history } = props;
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.list);
+  const products = useSelector((state) => state.product.new_list);
   const loading = useSelector((state) => state.product.is_loading);
 
   useEffect(() => {
-    dispatch(productActions.getItemDB());
+    if (products.length === 0) {
+      dispatch(productActions.getNewDB());
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const newProducts = products.filter((val) => {
-    return val.new === true;
-  });
 
   return (
     <>
@@ -33,16 +32,16 @@ function Newproducts(props) {
         <Spinner />
       ) : (
         <Container text='NEW(신상품)'>
-          {newProducts.map((val) => {
+          {products.map((val) => {
             return (
               <div
-                key={val.id}
+                key={val.productId}
                 onClick={() => {
-                  history.push(`/detail/product/${val.id}`);
+                  history.push(`/detail/product/${val.productId}`);
                   window.scrollTo({ top: 0, left: 0 });
                 }}
               >
-                <Item key={val.id} {...val} />
+                <Item key={val.productId} {...val} />
               </div>
             );
           })}

@@ -7,10 +7,10 @@ function MiniItem(props) {
     <>
       <ItemContainer>
         <ItemBody>
-          <Img src={props.image_url} alt='item-img' />
+          <Img src={props.imageUrl} alt='item-img' />
         </ItemBody>
         <ItemInfo>
-          <Title>{props.product_name}</Title>
+          <Title>{props.title}</Title>
           <PriceBox>
             <Price>
               {price.slice(0, -1)}

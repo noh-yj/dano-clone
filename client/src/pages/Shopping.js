@@ -13,16 +13,10 @@ function Shopping(props) {
   const dispatch = useDispatch();
   const { history } = props;
   const products = useSelector((state) => state.cart.list);
-  const is_login = useSelector((state) => state.user.is_login);
-  const user_info = useSelector((state) => state.user.user);
+
   useEffect(() => {
-    if (!is_login) {
-      setTimeout(() => {
-        dispatch(cartActions.getCartDB());
-      }, 150);
-    } else {
-      dispatch(cartActions.getCartDB());
-    }
+    dispatch(cartActions.getCartDB());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const total_price = products.map((product) => {
@@ -107,7 +101,7 @@ function Shopping(props) {
               </ShoppingBtn>
               <PurchaseBtn
                 onClick={() => {
-                  dispatch(cartActions.buyCartDB(user_info.username));
+                  dispatch(cartActions.buyCartDB());
                 }}
               >
                 구매하기

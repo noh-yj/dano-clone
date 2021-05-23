@@ -13,15 +13,16 @@ import { useDispatch, useSelector } from 'react-redux';
 function Freeproducts(props) {
   const { history } = props;
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.list);
+  const products = useSelector((state) => state.product.free_list);
   const loading = useSelector((state) => state.product.is_loading);
   useEffect(() => {
-    dispatch(productActions.getItemDB());
+    if (products.length === 0) {
+      dispatch(productActions.getfreeDB());
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  const free = products.filter((val) => {
-    return val.free === true;
-  });
+
   return (
     <>
       <Header />
@@ -30,16 +31,16 @@ function Freeproducts(props) {
         <Spinner />
       ) : (
         <Container text='무료배송'>
-          {free.map((val) => {
+          {products.map((val) => {
             return (
               <div
-                key={val.id}
+                key={val.productId}
                 onClick={() => {
-                  history.push(`/detail/product/${val.id}`);
+                  history.push(`/detail/product/${val.productId}`);
                   window.scrollTo({ top: 0, left: 0 });
                 }}
               >
-                <Item key={val.id} {...val} />
+                <Item key={val.productId} {...val} />
               </div>
             );
           })}

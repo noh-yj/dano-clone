@@ -18,9 +18,18 @@ function Main(props) {
   const { history } = props;
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product.list);
+  const bestProducts = useSelector((state) => state.product.best_list);
+  const freeProducts = useSelector((state) => state.product.free_list);
   const loading = useSelector((state) => state.product.is_loading);
   useEffect(() => {
     dispatch(productActions.getItemDB());
+    if (freeProducts.length === 0) {
+      dispatch(productActions.getfreeDB());
+    }
+    if (bestProducts.length === 0) {
+      dispatch(productActions.getBestDB());
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -29,16 +38,8 @@ function Main(props) {
   const lightFood = products.slice(88, 96);
   const bigSail = products.slice(42, 46);
   const snack = products.slice(104, 108);
-  const popularProducts = products
-    .filter((val) => {
-      return val.trending === true;
-    })
-    .slice(24, 40);
-  const freeProducts = products
-    .filter((val) => {
-      return val.free === true;
-    })
-    .slice(8, 20);
+  const popularProducts = bestProducts.slice(24, 40);
+  const freeDelProducts = freeProducts.slice(8, 20);
 
   return (
     <>
@@ -52,13 +53,13 @@ function Main(props) {
             {frontProducts.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <MiniItem key={val.id} {...val} />
+                  <MiniItem key={val.productId} {...val} />
                 </div>
               );
             })}
@@ -68,13 +69,13 @@ function Main(props) {
             {popularProducts.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item key={val.id} {...val} />
+                  <Item key={val.productId} {...val} />
                 </div>
               );
             })}
@@ -89,13 +90,13 @@ function Main(props) {
             {useFulProducts.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item key={val.id} {...val} />
+                  <Item key={val.productId} {...val} />
                 </div>
               );
             })}
@@ -105,13 +106,13 @@ function Main(props) {
             {lightFood.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item key={val.id} {...val} />
+                  <Item key={val.productId} {...val} />
                 </div>
               );
             })}
@@ -120,13 +121,13 @@ function Main(props) {
             {bigSail.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item2 key={val.id} {...val} />
+                  <Item2 key={val.productId} {...val} />
                 </div>
               );
             })}
@@ -138,16 +139,16 @@ function Main(props) {
           />
 
           <Container text='무료배송' main>
-            {freeProducts.map((val) => {
+            {freeDelProducts.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item key={val.id} {...val} />
+                  <Item key={val.productId} {...val} />
                 </div>
               );
             })}
@@ -156,13 +157,13 @@ function Main(props) {
             {snack.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item2 key={val.id} {...val} />
+                  <Item2 key={val.productId} {...val} />
                 </div>
               );
             })}

@@ -11,16 +11,10 @@ import { actionCreators as orderActions } from '../redux/modules/order';
 function Order(props) {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.order.list);
-  const is_login = useSelector((state) => state.user.is_login);
 
   useEffect(() => {
-    if (!is_login) {
-      setTimeout(() => {
-        dispatch(orderActions.getOrderDB());
-      }, 150);
-    } else {
-      dispatch(orderActions.getOrderDB());
-    }
+    dispatch(orderActions.getOrderDB());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

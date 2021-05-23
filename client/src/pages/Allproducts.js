@@ -17,6 +17,7 @@ function Allproducts(props) {
   const loading = useSelector((state) => state.product.is_loading);
   useEffect(() => {
     dispatch(productActions.getItemDB());
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -31,13 +32,13 @@ function Allproducts(props) {
             {products.map((val) => {
               return (
                 <div
-                  key={val.id}
+                  key={val.productId}
                   onClick={() => {
-                    history.push(`/detail/product/${val.id}`);
+                    history.push(`/detail/product/${val.productId}`);
                     window.scrollTo({ top: 0, left: 0 });
                   }}
                 >
-                  <Item key={val.id} {...val} />
+                  <Item key={val.productId} {...val} />
                 </div>
               );
             })}

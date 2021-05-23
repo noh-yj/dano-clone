@@ -140,6 +140,7 @@ function Signup(props) {
                 <td>
                   <input
                     type='text'
+                    placeholder='ex) 010-0000-0000'
                     onChange={(e) => {
                       setPhoneNum(e.target.value);
                     }}

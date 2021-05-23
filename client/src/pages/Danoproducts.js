@@ -13,17 +13,16 @@ import { useDispatch, useSelector } from 'react-redux';
 function Danoproducts(props) {
   const { history } = props;
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.product.list);
+  const products = useSelector((state) => state.product.dano_list);
   const loading = useSelector((state) => state.product.is_loading);
 
   useEffect(() => {
-    dispatch(productActions.getItemDB());
+    if (products.length === 0) {
+      dispatch(productActions.getDanoDB());
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const dano = products.filter((val) => {
-    return val.dano === true;
-  });
 
   return (
     <>
@@ -33,16 +32,16 @@ function Danoproducts(props) {
         <Spinner />
       ) : (
         <Container text='다노제품'>
-          {dano.map((val) => {
+          {products.map((val) => {
             return (
               <div
-                key={val.id}
+                key={val.productId}
                 onClick={() => {
-                  history.push(`/detail/product/${val.id}`);
+                  history.push(`/detail/product/${val.productId}`);
                   window.scrollTo({ top: 0, left: 0 });
                 }}
               >
-                <Item key={val.id} {...val} />
+                <Item key={val.productId} {...val} />
               </div>
             );
           })}

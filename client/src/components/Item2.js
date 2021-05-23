@@ -8,7 +8,7 @@ function Item2(props) {
     <>
       <ItemContainer>
         <ItemInfo>
-          <Title>{props.product_name}</Title>
+          <Title>{props.title}</Title>
           <PriceBox>
             <Price>
               {price.slice(0, -1)}
@@ -17,7 +17,7 @@ function Item2(props) {
           </PriceBox>
         </ItemInfo>
         <ItemBody>
-          <Img src={props.image_url} alt='item-img' />
+          <Img src={props.imageUrl} alt='item-img' />
         </ItemBody>
       </ItemContainer>
     </>

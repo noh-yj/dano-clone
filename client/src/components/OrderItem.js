@@ -8,16 +8,16 @@ function OrderItem(props) {
         <Tr>
           <td>
             <ItemBox>
-              <img src={props.img_url} alt='item-img' />
+              <img src={props.imageUrl} alt='item-img' />
 
               <TitleBox>
-                <div>{props.product_name}</div>
+                <div>{props.title}</div>
               </TitleBox>
             </ItemBox>
           </td>
           <td>{props.amount}</td>
           <td>
-            <Span>{props.price}</Span>원
+            <Span>{props.price}</Span>
           </td>
           <td>
             <Span>무료</Span>
