@@ -18,10 +18,10 @@
 - 주요 기능: 로그인, 회원가입, 회원정보 수정 및 탈퇴, 장바구니 추가, 삭제, 조회, 주문내역 추가, 조회, 상품 조회 등
 - 페이지 단위 컴포넌트 구성: 메인, 회원가입, 로그인, 마이페이지, 회원정보 수정, 제품 상세, 전체 제품, 인기 상품, 신상품, 다노제품, 알뜰상품, 무료배송, 다노샵 소개, 장바구니, 구매내역, 준비중 페이지
 - DB구성
-- user: {username, name, password, email, phone}
-- product: {id, image_url, product_name, price, dano, free, trending, bestDeal, new}
-- cart: {img_url, product_name, price, amount, username}
-- order: {img_url, product_name, price, amount, username}
+- user: {email, nickName, password, email, phone}
+- product: {productId, imageUrl, title, price}
+- cart: {cartId, imageUrl, title, price, amount}
+- order: {productId, imageUrl, title, price, amount}
 <hr/>
 <br/>
 
