@@ -4,11 +4,9 @@ import axios from 'axios';
 import { config } from '../../config';
 
 // 액션
-const ADD_ORDER = 'ADD_ORDER';
 const GET_ORDER = 'GET_ORDER';
 
 // 액션생성함수
-const addOrder = createAction(ADD_ORDER, (order_item) => ({ order_item }));
 const getOrder = createAction(GET_ORDER, (order_item) => ({ order_item }));
 
 // 초기 state
@@ -31,9 +29,7 @@ const getOrderDB = () => {
     })
       .then((res) => {
         let order_list = [...res.data];
-        getState.user?.user() === null
-          ? dispatch(getOrder([]))
-          : dispatch(getOrder(order_list));
+        dispatch(getOrder(order_list));
       })
       .catch((e) => {
         console.log('에러발생:', e);
@@ -55,7 +51,6 @@ const addOrderDB = (order_item) => {
       },
     })
       .then((res) => {
-        dispatch(addOrder({ ...order_item }));
         window.alert('구매가 완료되었습니다 :)');
         history.push('/purchase');
       })
@@ -69,11 +64,6 @@ const addOrderDB = (order_item) => {
 // redux-actions와 immer를 사용
 export default handleActions(
   {
-    [ADD_ORDER]: (state, action) =>
-      produce(state, (draft) => {
-        // 최신순으로 추가되게 unshift를 사용
-        draft.list.unshift(action.payload.order_item);
-      }),
     [GET_ORDER]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.order_item;
