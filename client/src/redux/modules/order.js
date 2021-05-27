@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import produce from 'immer';
 import axios from 'axios';
 import { config } from '../../config';
+import { getCookie } from '../../shared/Cookie';
 
 // 액션
 const GET_ORDER = 'GET_ORDER';
@@ -19,7 +20,7 @@ const initialState = {
 // 유저가 장바구니나 디테일페이지에서 구매버튼을 클릭한 데이터를 전부 조회
 const getOrderDB = () => {
   return function (dispatch, getState, { history }) {
-    if (!getState().user.user) {
+    if (!getCookie('is_login')) {
       dispatch(getOrder([]));
       return;
     }

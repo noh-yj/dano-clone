@@ -2,6 +2,7 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import axios from 'axios';
 import { config } from '../../config';
+import { getCookie } from '../../shared/Cookie';
 
 // 액션
 const GET_CART = 'GET_CART';
@@ -55,7 +56,7 @@ const deleteCartDB = (cart_id) => {
 // 특정 유저가 장바구니에 담은 제품 조회
 const getCartDB = () => {
   return function (dispatch, getState, { history }) {
-    if (!getState().user.user) {
+    if (!getCookie('is_login')) {
       dispatch(getCart([]));
       return;
     }
